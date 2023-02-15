@@ -1,6 +1,8 @@
 package edu.kh.array.practice;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class ArrayPractice {
@@ -253,6 +255,17 @@ public class ArrayPractice {
 //		발생한 난수 : 5 3 2 7 4 8 6 10 9 10
 //		최대값 : 10
 //		최소값 : 2
+		int[] arr = new int[10];
+		int max = 0;
+		int min = 10;
+		System.out.print("발생한 난수 : ");
+		for(int i =0; i<arr.length;i++) {
+			arr[i]=(int)(Math.random()*10+1);
+			System.out.print(arr[i]+" ");
+			max = Math.max(max, arr[i]);
+			min = Math.min(min, arr[i]);
+		}
+		System.out.printf("\n최대값 : %d\n최소값 : %d",max,min);
 	}
 
 	public void practice11() {
@@ -261,6 +274,18 @@ public class ArrayPractice {
 //
 //		[실행 화면]
 //		4 1 3 6 9 5 8 10 7 2
+		
+		int[] arr = new int[10];
+		System.out.print("발생한 난수 : ");
+		for(int i=0;i<arr.length;i++) {
+			arr[i]=(int)(Math.random()*10+1);
+			for(int j=0;j<i;j++) {
+				if(arr[i]==arr[j])
+					i--;
+			}
+		}
+		for(int i=0;i<arr.length;i++)
+			System.out.print(arr[i]+" ");
 	}
 
 	public void practice12() {
@@ -269,6 +294,18 @@ public class ArrayPractice {
 //
 //		[실행 화면]
 //		3 4 15 17 28 40
+		int[] arr = new int[6];
+		for(int i=0;i<arr.length;i++) {
+			arr[i]=(int)(Math.random()*46+1);
+			for(int j=0;j<i;j++) {
+				if(arr[i]==arr[j])
+					i--;
+			}
+		}
+		Arrays.sort(arr);
+		for(int i=0;i<arr.length;i++) {
+			System.out.print(arr[i]+" ");
+		}
 	}
 
 	public void practice13() {
@@ -279,6 +316,22 @@ public class ArrayPractice {
 //		문자열 : application
 //		문자열에 있는 문자 : a, p, l, i, c, t, o, n
 //		문자 개수 : 8
+		Scanner sc = new Scanner(System.in);
+		System.out.print("문자열 : ");
+		String input = sc.next();
+		char[] arr = input.toCharArray();
+		String ans = "";
+		int count=0;
+		for(int i=0;i<arr.length;i++) {
+			if(ans.indexOf(arr[i])==-1) {
+				//문자열 ans에 arr[i]와 중복 문자가 없으면 ans에 추가하고 카운트 증감
+				ans+=arr[i]+", ";
+				count++;
+			}
+		}
+		System.out.println("문자열에 있는 문자 : "+ans.substring(0, ans.length()-2));
+		// String.substring(0, ans.length()-2) = 문자열 앞의 0글자, 뒤의 2글자를 지운 값을 String으로 반환
+		System.out.println("문자 개수 : "+count);
 	}
 
 	public void practice14() {
@@ -307,6 +360,41 @@ public class ArrayPractice {
 //				6번째 문자열 : 영단어600
 //				더 값을 입력하시겠습니까?(Y/N) : n
 //				[자바의 정석, 알고리즘, C프로그래밍, 인간관계, 자기계발, 영단어600]
+		Scanner sc = new Scanner(System.in);
+		System.out.print("배열의 크기를 입력하세요 : ");
+		int size = sc.nextInt();
+		String[] arr = new String[size];
+
+		for(int i=0;i<arr.length;i++) {
+			System.out.printf("%d번째 문자열 : ",i+1);
+			arr[i] = sc.next();
+		}
+		
+		while(true) {
+			System.out.print("더 값을 입력하시겠습니까?(Y/N): ");
+			String sel = sc.next();
+			if (sel.equals("y")||sel.equals("Y")) {
+				System.out.print("더 입력하고 싶은 개수 : ");
+				int input = sc.nextInt();
+				size += input;
+				String[] copy = new String[size];
+				for (int i = 0; i < copy.length; i++) {
+					if (arr.length > i)
+						copy[i] = arr[i];
+					else {
+						System.out.printf("%d번째 문자열 : ", i + 1);
+						copy[i] = sc.next();
+					}
+				}
+				arr=copy;
+			} else if(sel.equals("n")||sel.equals("N")){
+				break;
+			} else {
+				System.err.println("Y/N으로 대답해라");
+				return;
+			}
+		}
+		System.out.println(Arrays.toString(arr));
 	}
 
 	public void practice15() {
@@ -317,6 +405,13 @@ public class ArrayPractice {
 //		(0, 0)(0, 1)(0, 2)
 //		(1, 0)(1, 1)(1, 2)
 //		(2, 0)(2, 1)(2, 2)
+		String[][] arr = new String[3][3];
+		for(int i=0;i<arr.length;i++) {
+			for(int j=0;j<arr[i].length;j++) {
+				arr[i][j]="("+i+","+j+")";
+			}
+			System.out.println(Arrays.toString(arr[i]).replaceAll("[\\[-\\]]", ""));
+		}
 	}
 
 	public void practice16() {
@@ -329,6 +424,16 @@ public class ArrayPractice {
 //		5 6 7 8
 //		9 10 11 12
 //		13 14 15 16
+		int[][] arr = new int[4][4];
+		int val = 1;
+		for(int i=0;i<arr.length;i++) 
+			for(int j=0;j<arr[i].length;j++) 
+				arr[i][j] = val++;
+		for(int i=0;i<arr.length;i++) { 
+			for(int j=0;j<arr[i].length;j++) 
+				System.out.print(arr[i][j]+" ");
+			System.out.println();
+		}
 	}
 
 	public void practice17() {
@@ -341,6 +446,16 @@ public class ArrayPractice {
 //		12 11 10 9
 //		8 7 6 5
 //		4 3 2 1
+		int[][] arr = new int[4][4];
+		int val = arr.length*arr[0].length;
+		for(int i=0;i<arr.length;i++) 
+			for(int j=0;j<arr[i].length;j++) 
+				arr[i][j] = val--;
+		for(int i=0;i<arr.length;i++) { 
+			for(int j=0;j<arr[i].length;j++) 
+				System.out.print(arr[i][j]+" ");
+			System.out.println();
+		}
 	}
 
 	public void practice18() {
@@ -357,6 +472,26 @@ public class ArrayPractice {
 //		3 6 9 18
 //		6 10 10 26
 //		18 19 26 63
+		int[][] arr=new int[4][4];
+		for(int i=0;i<arr.length-1;i++)
+			for(int j=0;j<arr[i].length-1;j++) 
+				arr[i][j]=(int)(Math.random()*10+1);
+		for(int i=0;i<arr.length-1;i++) {
+			for(int j=0;j<arr.length-1;j++) {
+				arr[i][arr.length-1] += arr[i][j];
+			}
+		}
+		for(int i=0;i<arr.length-1;i++) {
+			for(int j=0;j<arr.length-1;j++) {
+				arr[arr.length-1][i] += arr[j][i];
+			}
+		}
+		for(int i=0;i<arr.length;i++) {
+			for(int j=0;j<arr.length;j++) {
+				System.out.print(arr[i][j]+" ");
+			}
+			System.out.println();
+		}
 		
 	}
 
