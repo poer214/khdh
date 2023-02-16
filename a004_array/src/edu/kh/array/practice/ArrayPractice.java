@@ -407,9 +407,8 @@ public class ArrayPractice {
 //		(2, 0)(2, 1)(2, 2)
 		String[][] arr = new String[3][3];
 		for(int i=0;i<arr.length;i++) {
-			for(int j=0;j<arr[i].length;j++) {
+			for(int j=0;j<arr[i].length;j++)
 				arr[i][j]="("+i+","+j+")";
-			}
 			System.out.println(Arrays.toString(arr[i]).replaceAll("[\\[-\\]]", ""));
 		}
 	}
@@ -474,25 +473,21 @@ public class ArrayPractice {
 //		18 19 26 63
 		int[][] arr=new int[4][4];
 		for(int i=0;i<arr.length-1;i++)
-			for(int j=0;j<arr[i].length-1;j++) 
-				arr[i][j]=(int)(Math.random()*10+1);
-		for(int i=0;i<arr.length-1;i++) {
-			for(int j=0;j<arr.length-1;j++) {
+			for(int j=0;j<arr[i].length-1;j++) {
+				arr[i][j] = (int) (Math.random() * 10 + 1);
+				arr[arr.length - 1][arr.length - 1] += arr[i][j];
+			}
+		for(int i=0;i<arr.length-1;i++)
+			for(int j=0;j<arr.length-1;j++)
 				arr[i][arr.length-1] += arr[i][j];
-			}
-		}
-		for(int i=0;i<arr.length-1;i++) {
-			for(int j=0;j<arr.length-1;j++) {
+		for(int i=0;i<arr.length-1;i++)
+			for(int j=0;j<arr.length-1;j++)
 				arr[arr.length-1][i] += arr[j][i];
-			}
-		}
 		for(int i=0;i<arr.length;i++) {
-			for(int j=0;j<arr.length;j++) {
+			for(int j=0;j<arr.length;j++)
 				System.out.print(arr[i][j]+" ");
-			}
 			System.out.println();
 		}
-		
 	}
 
 	public void practice19() {
@@ -509,7 +504,30 @@ public class ArrayPractice {
 //		Q M B H
 //		H B I X
 //		G F X I
-
+		final int SIZE_OF_MIN=1;
+		final int SIZE_OF_MAX=10;
+		
+		Scanner sc = new Scanner(System.in);
+		int row;
+		int col;
+		while(true) {
+			System.out.print("행 크기 : ");
+			row = sc.nextInt();
+			System.out.print("열 크기 : ");
+			col = sc.nextInt();
+			if(row>=SIZE_OF_MIN&&row<=SIZE_OF_MAX&&col>=SIZE_OF_MIN&&row<=SIZE_OF_MAX)
+				break;
+			System.out.printf("반드시 %d~%d 사이의 정수를 입력해야 합니다.",SIZE_OF_MIN,SIZE_OF_MAX);
+		}
+		char[][] arr = new char[row][col];
+		
+		for(int i=0;i<arr.length;i++) {
+			for(int j=0;j<arr[i].length;j++) {
+				arr[i][j] = (char)(Math.random()*26+65);
+				System.out.print(arr[i][j]+" ");
+			}
+			System.out.println();
+		}
 	}
 
 	public void practice20() {
@@ -527,6 +545,23 @@ public class ArrayPractice {
 //		c d e f g h
 //		i j k
 //		l m n o p
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.print("행의 크기 : ");
+		int row = sc.nextInt();
+		char[][] arr = new char[row][];
+		char alphabet='a';
+		for(int i = 0; i<arr.length;i++) {
+			System.out.printf("%d열의 크기 : ",i);
+			arr[i] = new char[sc.nextInt()];
+		}
+		for(int i=0;i<arr.length;i++) {
+			for(int j=0;j<arr[i].length;j++) {
+				arr[i][j]=alphabet++;
+				System.out.print(arr[i][j]+" ");
+			}
+			System.out.println();
+		}
 	}
 
 	public void practice21() {
@@ -545,6 +580,23 @@ public class ArrayPractice {
 //		송성실 윤예의
 //		진재주 차천축
 //		피풍표 홍하하
+		
+		final int ROW = 3;
+		final int COL = 2;
+		final int DIV = 2;
+		String[] students = { "강건강", "남나나", "도대담", "류라라", "문미미", "박보배",
+							  "송성실", "윤예의", "진재주", "차천축", "피풍표", "홍하하" };
+		String[][][] arr = new String[DIV][ROW][COL];
+		for(int i = 0,a=0; i<arr.length;i++) {
+			System.out.printf("== %d분단 ==\n",i+1);
+			for(int j=0;j<arr[i].length;j++) {
+				for(int k=0;k<arr[i][j].length;k++) {
+					arr[i][j][k]=students[a++];
+					System.out.print(arr[i][j][k]+" ");
+				}
+				System.out.println();
+			}
+		}
 	}
 
 	public void practice22() {
@@ -563,6 +615,35 @@ public class ArrayPractice {
 //		============================
 //		검색할 학생 이름을 입력하세요 : 차천축
 //		검색하신 차천축 학생은 2분단 2번째 줄 오른쪽에 있습니다.
+		final int ROW = 3;
+		final int COL = 2;
+		final int DIV = 2;
+		String[] students = { "강건강", "남나나", "도대담", "류라라", "문미미", "박보배",
+							  "송성실", "윤예의", "진재주", "차천축", "피풍표", "홍하하" };
+		String[][][] arr = new String[DIV][ROW][COL];
+		for(int i = 0,a=0; i<arr.length;i++) {
+			System.out.printf("== %d분단 ==\n",i+1);
+			for(int j=0;j<arr[i].length;j++) {
+				for(int k=0;k<arr[i][j].length;k++) {
+					arr[i][j][k]=students[a++];
+					System.out.print(arr[i][j][k]+" ");
+				}
+				System.out.println();
+			}
+		}
+		System.out.println("============================");
+		System.out.print("검색할 학생 이름을 입력하세요 : ");
+		Scanner sc = new Scanner(System.in);
+		String search = sc.next();
+		for(int i = 0,a=0; i<arr.length;i++)
+			for(int j=0;j<arr[i].length;j++)
+				for(int k=0;k<arr[i][j].length;k++)
+					if(arr[i][j][k].equals(search)) {
+						System.out.printf("검색하신 %s 학생은 %d분단 %d번째 줄 %s에 있습니다.",
+								arr[i][j][k],i+1,j+1,k==0?"왼쪽":"오른쪽");
+						return;
+					}
+		System.out.println("그런 애는 없어");
 	}
 
 	public void practice23() {
@@ -577,7 +658,42 @@ public class ArrayPractice {
 //		1
 //		2
 //		3
-//		4 X
+//		4     X
+		Scanner sc = new Scanner(System.in);
+		String[][] arr = new String[6][6];
+		for(int i=0;i<arr.length;i++) {
+			for(int j = 0; j<arr[i].length;j++) 
+				if(i==0&&j==0) 
+					arr[i][j]="  ";
+				else if(i==0)
+					arr[i][j]=j-1+" ";
+				else if(j==0)
+					arr[i][j]=i-1+" ";
+				else
+					arr[i][j]="  ";
+			
+		}
+		System.out.print("행 인덱스 입력 : ");
+		int row = sc.nextInt();
+		System.out.print("열 인덱스 입력 : ");
+		int col = sc.nextInt();
+
+		try {
+			for (int i = 0; i < arr.length; i++)
+				for (int j = 0; j < arr.length; j++)
+					if (i == row && j == col)
+						arr[i + 1][j + 1] = "X ";
+		} catch (Exception e) {
+			System.err.print("인덱스는 0~4까지야 !");
+			return;
+		}
+		System.out.println();
+		for (int i = 0; i < arr.length; i++) {
+			for (int j = 0; j < arr.length; j++) {
+				System.out.print(arr[i][j]);
+			}
+			System.out.println();
+		}
 	}
 
 	public void practice24() {
@@ -595,10 +711,42 @@ public class ArrayPractice {
 //
 //							행 인덱스 입력 >> 99
 //							프로그램 종료
-
-	}
-	
-	public void bingoGame() {
+		Scanner sc = new Scanner(System.in);
+		String[][] arr = new String[6][6];
+		for(int i=0;i<arr.length;i++)
+			for(int j = 0; j<arr[i].length;j++) 
+				if(i==0&&j==0) 
+					arr[i][j]="  ";
+				else if(i==0)
+					arr[i][j]=j-1+" ";
+				else if(j==0)
+					arr[i][j]=i-1+" ";
+				else
+					arr[i][j]="  ";
 		
+		while (true) {
+			System.out.print("행 인덱스 입력 : ");
+			int row = sc.nextInt();
+			if(row==99)
+				break;
+			System.out.print("열 인덱스 입력 : ");
+			int col = sc.nextInt();
+			try {
+				for (int i = 0; i < arr.length; i++)
+					for (int j = 0; j < arr.length; j++)
+						if (i == row && j == col)
+							arr[i + 1][j + 1] = "X ";
+			} catch (Exception e) {
+				System.err.println("인덱스는 0~4까지야 !");
+				return;
+			}
+			System.out.println();
+			for (int i = 0; i < arr.length; i++) {
+				for (int j = 0; j < arr.length; j++)
+					System.out.print(arr[i][j]);
+				System.out.println();
+			}
+		}
+		System.out.println("프로그램 종료");
 	}
 }
