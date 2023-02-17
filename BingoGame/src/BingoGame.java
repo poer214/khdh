@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class BingoGame {
 	private final static String CHECKED="★";
 	private final static int WIN_CONDITION=3;
+	private static Scanner sc;
 	
 	// 빙고판 초기화
 	private static String[][] init(int size) {
@@ -29,7 +30,7 @@ public class BingoGame {
 			// 체크할 숫자 입력받기
 			System.out.print("정수를 입력하시오 : ");
 			// 입력받은 숫자와 일치하는 숫자 찾아서 CHECKED(★)로 바꾼 후 출력 후 빙고 체크한 뒤 빙고줄 수 넘겨받아 게임오버체크
-			gameOver=gameOverCheck(bingoCheck(print(searchAndChange(numbers,new Scanner(System.in).nextInt()))));
+			gameOver=gameOverCheck(bingoCheck(print(searchAndChange(numbers,sc.nextInt()))));
 		}
 	}
 	
@@ -45,9 +46,8 @@ public class BingoGame {
 	// 빙고판 출력
 	private static String[][] print(String[][] numbers) {
 		for(int i=0; i<numbers.length;i++) {
-			for(int j=0;j<numbers[i].length;j++) {
+			for(int j=0;j<numbers[i].length;j++)
 				System.out.printf("%3s",numbers[i][j]);
-			}
 			System.out.println();
 		}
 		return numbers;
@@ -126,9 +126,9 @@ public class BingoGame {
 //		3. 가로, 세로, 대각선 한 줄이 모두 “★“로 변경되어 있을 경우 빙고 카운트를 1 증가
 //
 //		4. 빙고카운트가 3이상이 되면 “***Bingo!***” 를 출력하고 프로그램 종료.
-		
 		// 빙고판 초기화하고 게임 시작
 		System.out.print("빙고판 크기 지정 : ");
-		start(init(new Scanner(System.in).nextInt()));
+		sc = new Scanner(System.in);
+		start(init(sc.nextInt()));
 	}
 }

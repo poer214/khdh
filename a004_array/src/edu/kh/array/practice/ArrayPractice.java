@@ -363,11 +363,12 @@ public class ArrayPractice {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("배열의 크기를 입력하세요 : ");
 		int size = sc.nextInt();
+		sc.nextLine();
 		String[] arr = new String[size];
 
 		for(int i=0;i<arr.length;i++) {
 			System.out.printf("%d번째 문자열 : ",i+1);
-			arr[i] = sc.next();
+			arr[i] = sc.nextLine();
 		}
 		
 		while(true) {
@@ -376,6 +377,7 @@ public class ArrayPractice {
 			if (sel.equals("y")||sel.equals("Y")) {
 				System.out.print("더 입력하고 싶은 개수 : ");
 				int input = sc.nextInt();
+				sc.nextLine();
 				size += input;
 				String[] copy = new String[size];
 				for (int i = 0; i < copy.length; i++) {
@@ -383,14 +385,14 @@ public class ArrayPractice {
 						copy[i] = arr[i];
 					else {
 						System.out.printf("%d번째 문자열 : ", i + 1);
-						copy[i] = sc.next();
+						copy[i] = sc.nextLine();
 					}
 				}
 				arr=copy;
 			} else if(sel.equals("n")||sel.equals("N")){
 				break;
 			} else {
-				System.err.println("Y/N으로 대답해라");
+				System.err.println("Y/N으로 대답하세요");
 				return;
 			}
 		}
