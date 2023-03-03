@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class BingoGame {
 	private final static String CHECKED="★";
 	private final static int WIN_CONDITION=3;
-	private static Scanner sc;
+	private static Scanner sc = new Scanner(System.in);
 	
 	// 빙고판 초기화
 	private static String[][] init(int size) {
@@ -60,13 +60,13 @@ public class BingoGame {
 	
 	private static int rowBingoCheck(String[][] numbers) {
 		int bingo = 0;
-		for(int i=0;i<numbers.length;i++) {
-		int checked=0;
-		for(int j=0;j<numbers.length;j++) 
-			if(numbers[i][j].equals(CHECKED))
-				checked++;
-		if(checked==numbers.length)
-			bingo++;
+		for (int i = 0; i < numbers.length; i++) {
+			int checked = 0;
+			for (int j = 0; j < numbers.length; j++)
+				if (numbers[i][j].equals(CHECKED))
+					checked++;
+			if (checked == numbers.length)
+				bingo++;
 		}
 		return bingo;		
 	}
@@ -128,7 +128,6 @@ public class BingoGame {
 //		4. 빙고카운트가 3이상이 되면 “***Bingo!***” 를 출력하고 프로그램 종료.
 		// 빙고판 초기화하고 게임 시작
 		System.out.print("빙고판 크기 지정 : ");
-		sc = new Scanner(System.in);
 		start(init(sc.nextInt()));
 	}
 }

@@ -1,0 +1,45 @@
+@charset "UTF-8";
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  width: 600px;
+  height: 600px;
+  margin: 0 auto;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
+.cell {
+  width: calc(100% / 15);
+  height: calc(100% / 15);
+  box-sizing: border-box;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.black {
+    background-color: black;
+    border: 1px solid black;
+    border-radius: 50%;
+}
+
+.white {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 50%;
+}
+
+#winner {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+#reset-btn {
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  background-color: #ccc;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
