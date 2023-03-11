@@ -1,12 +1,13 @@
-package kh.project.kh_stock_market.main;
+package project.mini.main;
 
 import java.util.Scanner;
 
-import kh.project.kh_stock_market.play.Play;
-import kh.project.kh_stock_market.view.View;
+import project.mini.play.Play;
+import project.mini.view.View;
+
 
 public class Main {
-	public Main(){
+	public Main() {
 		Scanner sc = new Scanner(System.in);
 		View view = new View();
 		while(true) {
