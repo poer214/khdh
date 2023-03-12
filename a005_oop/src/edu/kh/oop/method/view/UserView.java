@@ -20,6 +20,11 @@ public class UserView {
 	// -> 어디서든지 클래스명.필드명으로 접근 가능
 	public static User loginUser = null;
 	
+	// 기본 생성자
+	public UserView() {
+		signUpUser = new User("hong", "gil", "홍길동", 'M');
+	}
+	
 	
 	// 메뉴를 출력하는 메서드
 	public void displayMenu(){
@@ -73,12 +78,14 @@ public class UserView {
 		char userGender = sc.next().charAt(0);
 		
 		signUpUser = service.signUp(userId, userPw, userPwConfirm, userName, userGender);
+		// 객체 주소 또는 null이 반환되어 저장됨
 		
 		if(signUpUser != null) {
 			System.out.println("[[[[회원 가입 성공]]]]");
 		} else {
 			System.out.println("[비밀번호가 일치하지 않습니다.]");
 		}
+		System.out.println();
 	}
 	
 	private void login() {
@@ -100,6 +107,12 @@ public class UserView {
 		// 입력 받은 값 + signUpUser를 Service의 login 메서드로 전달하여
 		// 아이디 비밀번호 일치 시 로그인
 		service.login(userId,userPw,signUpUser);
+		
+		if(UserView.loginUser != null) {    //성공
+			System.out.println(UserView.loginUser.getUserName() + "님 환영합니다.");
+		}else {  // 실패
+			System.out.println("[아이디 또는 비밀번호가 일치하지 않습니다.]");
+		}
 	}
 	
 	private void logout() {
@@ -116,6 +129,7 @@ public class UserView {
 	
 	// 4. 회원 정보 출력
 	public void  userPrint() {
+		System.out.println("*** 회원 정보 출력 ***");
 		if(UserView.loginUser != null)
 			System.out.println(UserView.loginUser.toString());
 		else System.out.println("[로그인 후 이용해주세요]");
@@ -123,7 +137,7 @@ public class UserView {
 	
 	// 5. 회원 정보 수정
 	public void userUpdate() {
-		System.out.println("*** 5. 회원 정보 수정 ***");
+		System.out.println("*** 회원 정보 수정 ***");
 		if(UserView.loginUser != null) { // 로그인이 되어있는 경우
 			// 이름, 성별만 변경 가능
 			// 단, 비밀번호 일치해야만 수정 가능

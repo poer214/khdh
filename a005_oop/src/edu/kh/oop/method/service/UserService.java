@@ -21,6 +21,7 @@ public class UserService {
 		User user = null; // 아무것도 참조하지 않음
 		
 		if (userPw.equals(userPwConfirm)) {
+			// User 객체 생성 후 주소를 user에 저장
 			user = new User(userId, userPw, userName, userGender);
 		}
 
@@ -41,14 +42,19 @@ public class UserService {
 			
 			// UserView에 있는 클래스 변수 (static) login(User())
 			// 가입한 회원의 정보를 가지고 있는 객체의 주소를 대입.
+			UserView.loginUser = signUpUser;
 		}
-		
-		
 	}
 	
 	public boolean userUpdate(String userName, char userGender, String userPw) {
+		
+		// 비밀 번호 일치 여부 확인
+		
+		// 비밀 번호가 같지 않을 때 
 		if(!UserView.loginUser.getUserPw().equals(userPw))
 			return false;
+		
+		// 비밀 번호가 일치할 때 
 		UserView.loginUser.setUserName(userName);
 		UserView.loginUser.setUserGender(userGender);
 		
