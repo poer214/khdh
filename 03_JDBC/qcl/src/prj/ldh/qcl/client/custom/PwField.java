@@ -12,6 +12,7 @@ import javax.swing.JPasswordField;
 import javax.swing.border.Border;
 
 public class PwField extends JPasswordField {
+    public static String HINT = "비밀번호 입력";
 	public PwField(int columns) {
 		super(columns);
 		setDocument(new JTextFieldLimit(30)); // 글자수 제한
@@ -35,13 +36,12 @@ public class PwField extends JPasswordField {
         setBorder(defaultBorder);
         setForeground(Color.GRAY);
         setEchoChar((char) 0); // 마스킹 문자 제거
-        String hint = "비밀번호 입력";
-        setText(hint);
+        setText(HINT);
         addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
             	setBorder(focusBorder);
-                if (Arrays.equals(getPassword(), hint.toCharArray())) {
+                if (Arrays.equals(getPassword(), HINT.toCharArray())) {
                     setText("");
                     setForeground(Color.BLACK);
                     setEchoChar('●'); // 마스킹 문자 설정
@@ -53,7 +53,7 @@ public class PwField extends JPasswordField {
                 if (getPassword().length == 0) {
                     setForeground(Color.GRAY);
                     setEchoChar((char) 0);
-                    setText(hint);
+                    setText(HINT);
                 }
             }
         });

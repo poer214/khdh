@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 public class IdField extends JTextField {
+	public static final String HINT ="이메일주소 입력";
 	public IdField(int columns) {
 		super(columns);
 		setDocument(new JTextFieldLimit(30)); // 글자수 제한
@@ -33,13 +34,12 @@ public class IdField extends JTextField {
         );
         setBorder(defaultBorder);
         setForeground(Color.GRAY);
-        String hint = "아이디 입력";
-        setText(hint);
+        setText(HINT);
         addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
             	setBorder(focusBorder);
-                if (getText().equals(hint)) {
+                if (getText().equals(HINT)) {
                     setText("");
                     setForeground(Color.BLACK);
                 }
@@ -49,7 +49,7 @@ public class IdField extends JTextField {
             	setBorder(defaultBorder);
                 if (getText().isEmpty()) {
                     setForeground(Color.GRAY);
-                    setText(hint);
+                    setText(HINT);
                 }
             }
         });

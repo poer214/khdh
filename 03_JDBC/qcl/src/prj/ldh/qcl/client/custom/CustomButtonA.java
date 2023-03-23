@@ -14,7 +14,7 @@ public class CustomButtonA extends JButton{
         UIManager.put("Button.focus", new Color(240, 240, 240));
         setBackground(Color.WHITE);
         setForeground(Color.BLACK);
-        setFont(new Font("D2Coding", Font.BOLD, 12));
+        setFont(new Font("D2Coding", Font.BOLD, 15));
         setBorderPainted(false);
         setFocusPainted(false);
 //        setContentAreaFilled(false);

@@ -1,9 +1,9 @@
 package prj.ldh.qcl.client.run;
 
-import prj.ldh.qcl.client.view.LoginView;
+import prj.ldh.qcl.client.view.QCLView;
 
 public class QCLClientRun {
 	public static void main(String[] args) {
-		new LoginView();
+		new QCLView();
 	}
 }
