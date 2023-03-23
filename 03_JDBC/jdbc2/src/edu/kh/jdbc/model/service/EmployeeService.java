@@ -1,8 +1,7 @@
 package edu.kh.jdbc.model.service;
 
 // JDBCTemplate에 있는 static 메서드를 가져와 자신의 것처럼 사용
-import static edu.kh.jdbc.common.JDBCTemplate.close;
-import static edu.kh.jdbc.common.JDBCTemplate.getConnection;
+import static edu.kh.jdbc.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -100,19 +99,101 @@ public class EmployeeService {
 		return empList;
 	}
 
-	/**
-	 * @param a, b
+	/**급여 범위로 조회
+	 * @param min
+	 * @param max
 	 * @return empList
 	 * @throws SQLException 
 	 */
-	public List<Employee> selectSalaryBetween(int a, int b) throws SQLException{
+	public List<Employee> selectSalary(int min, int max) throws SQLException{
+		// 1. Connection 생성
 		Connection conn = getConnection();
 		
-		List<Employee> empList = dao.selectSalaryBetween(conn, a, b);
+		// 2. DAO 메서드 호출(Connection, a, b)
+		List<Employee> empList = dao.selectSalary(conn, min, max);
 		
+		// 3. Connection 반환
 		close(conn);
 		
+		// 4. 결과 반환
 		return empList;
 	}
 
+	/** 사원 정보 삽입 서비스
+	 * 
+	 * @param emp
+	 * @return result
+	 * @throws SQLException
+	 */
+	public int insertEmployee(Employee emp) throws SQLException{
+		
+		// 1. Create Connection
+		Connection conn = getConnection();
+		
+		// 2. DAO 메서드 호출 후 결과 반환 받기
+		int result = dao.insertEmployee(conn, emp);
+		
+		// DAO에서 DML(INSERT) 수행
+		// -> 트랜잭션에 임시 저장
+		// -> 수행 결과에 따라 commit, rollback 지정
+		
+		// 3. 트랜잭션 제어 처리
+		if(result > 0) // 삽입 성공 시
+			commit(conn);
+		else	// 삽입 실패시
+			rollback(conn);
+		
+		// 4. 커넥션 반환
+		close(conn);
+		
+		// 5. 결과 반환
+		return result;
+	}
+
+	/** 회원 정보 수정 서비스
+	 * @param emp
+	 * @return result
+	 * @throws SQLException
+	 */
+	public int updateEmployee(Employee emp) throws SQLException {
+		
+		// 1. 커넥션 생성
+		Connection conn = getConnection();
+		
+		// 2. DAO 메서드 호출 후 결과 반환 받기
+		int result = dao.updateEmployee(conn, emp);
+		
+		// 3. 트랜잭션 제어 처리
+		if(result > 0) commit(conn);
+		else		   rollback(conn);
+		
+		// 4. Connection 반환
+		close(conn);
+		
+		// 5. 결과 반환
+		return result;
+	}
+
+	/** 사원 퇴사 처리 서비스
+	 * @param input
+	 * @return result
+	 * @throws SQLException
+	 */
+	public int retireEmployee(int input) throws SQLException{
+		// 1. 커넥션 생성
+		Connection conn = getConnection();
+
+		// 2. DAO 메서드 호출 후 결과 반환 받기
+		int result = dao.retireEmployee(conn, input);
+
+		// 3. 트랜잭션 제어 처리
+		if (result > 0) commit(conn);
+		else rollback(conn);
+
+		// 4. Connection 반환
+		close(conn);
+
+		// 5. 결과 반환
+		return result;
+	}
 }

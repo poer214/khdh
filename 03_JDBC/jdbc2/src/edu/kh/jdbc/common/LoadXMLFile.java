@@ -42,7 +42,7 @@ public class LoadXMLFile {
 			conn.close();
 			
 			/* 왜 XML 같은 외부 파일을 이용해서 DB 정보를 읽어올까?
-			 * 
+			 *                   
 			 * 1. 코드 중복 제거
 			 * 
 			 * 2. 별도 관리 용이
