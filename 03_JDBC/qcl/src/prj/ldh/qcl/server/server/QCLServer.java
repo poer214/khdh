@@ -36,7 +36,7 @@ public class QCLServer {
 				clients.add(client);
 				new ReceiveThread(client);
 //				String message = sc.nextLine();
-//				Data requestData = new Data("message", "ㅋ");
+//				Data requestData = new Data("message", message);
 //				out.println(objectMapper.writeValueAsString(requestData));
 			} catch (IOException | InterruptedException e) {
 				e.printStackTrace();

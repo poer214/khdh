@@ -56,8 +56,8 @@ public class LoginForm extends JPanel implements ActionListener{
 		loginBtn = new CustomButtonA(LOGIN_BTN);
 		joinBtn = new CustomButtonA(JOIN_BTN);
 		findBtn = new CustomButtonA(FIND_BTN);
-		idField = new IdField(18);
-		pwField = new PwField(18);
+		idField = new IdField(30);
+		pwField = new PwField(30);
 		ButtonSize = new Dimension(260, 50);
 		titleLabelFont = new Font("D2Coding", Font.BOLD, 30);
 		stateLabelFont = new Font("D2Coding", Font.ITALIC, 12);
