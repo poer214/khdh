@@ -4,15 +4,15 @@ import java.util.regex.Pattern;
 
 import prj.ldh.qcl.client.custom.IdField;
 import prj.ldh.qcl.client.custom.PwField;
-import prj.ldh.qcl.client.view.form.LoginForm;
+import prj.ldh.qcl.client.view.panel.LoginPanel;
 import prj.ldh.qcl.common.dto.Data;
 
 public class LoginFormService {
-	private LoginForm loginForm;
+	private LoginPanel loginForm;
 
 
 
-	public LoginFormService(LoginForm loginForm) {
+	public LoginFormService(LoginPanel loginForm) {
 		this.loginForm = loginForm;
 	}
 	

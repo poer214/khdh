@@ -1,4 +1,4 @@
-package prj.ldh.qcl.client.view.form;
+package prj.ldh.qcl.client.view.panel;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -20,7 +20,7 @@ import prj.ldh.qcl.client.service.LoginFormService;
 import prj.ldh.qcl.client.view.QCLView;
 import prj.ldh.qcl.common.dto.Data;
 
-public class LoginForm extends JPanel implements ActionListener{
+public class LoginPanel extends JPanel implements ActionListener{
 	private final String LOGIN_BTN = "로그인";
 	private final String JOIN_BTN = "회원가입";
 	private final String FIND_BTN = "이메일 / 비밀번호 찾기";
@@ -39,7 +39,7 @@ public class LoginForm extends JPanel implements ActionListener{
 	private Font titleLabelFont;
 	private Font stateLabelFont;
 	
-	public LoginForm(QCLView view, QCLConnect connect) {
+	public LoginPanel(QCLView view, QCLConnect connect) {
 		this.view = view;
 		this.connect = connect;
 		initPanel();
@@ -121,5 +121,9 @@ public class LoginForm extends JPanel implements ActionListener{
 		case JOIN_BTN:break;
 		case FIND_BTN:break;
 		}
+	}
+	
+	private class ComponentSetter {
+		
 	}
 }

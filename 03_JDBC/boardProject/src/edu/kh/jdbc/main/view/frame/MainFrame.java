@@ -21,7 +21,7 @@ import myResources.TitleBar;
 public class MainFrame extends JFrame {
 	private MainService service = new MainService();
 	
-	public MainFrame(){
+	public MainFrame() {
 		setLoginPn();
 		initFrame();
 	}
@@ -43,10 +43,6 @@ public class MainFrame extends JFrame {
 		// 창 보여주기
 		setVisible(true);
 	}
-	
-	
-
-	
 
 	// *** 로그인 페이지 ***
 	private JPanel lgnPn;
@@ -90,12 +86,10 @@ public class MainFrame extends JFrame {
 			if(e.getSource()==lgnLoginBtn) {
 				try {
 					Session.loginMember = service.login(lgnIdFld.getText(), lgnPwFld.getText());
-					if(Session.loginMember==null) {
+					if(Session.loginMember==null)
 						lgnStateLb.setText("로그인 실패");
-					} else {
+					else 
 						lgnPn.setVisible(false);
-					}
-					
 				} catch (Exception e1) {
 					lgnStateLb.setText("로그인 중 예외 발생");
 					e1.printStackTrace();

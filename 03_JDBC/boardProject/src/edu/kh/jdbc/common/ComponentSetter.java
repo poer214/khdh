@@ -31,7 +31,7 @@ public class ComponentSetter {
 //        UIManager.put("Button.focus", new Color(240, 240, 240));
         btn.setBackground(Color.WHITE);
         btn.setForeground(Color.BLACK);
-        btn.setFont(new Font("D2Coding", Font.BOLD, 15));
+        btn.setFont(new Font("", Font.BOLD, 15));
         btn.setBorderPainted(false);
         btn.setFocusPainted(false);
         btn.setPreferredSize(new Dimension(260,50));
@@ -39,8 +39,8 @@ public class ComponentSetter {
 	}
 	
 	public JTextField tf(String hint) {
-		JTextField tf = new JTextField(30);
-		tf.setDocument(new JTextFieldLimit(30)); // 글자수 제한
+		JTextField tf = new JTextField(18);
+		tf.setDocument(new JTextFieldLimit(18)); // 글자수 제한
         tf.setBorder(BorderFactory.createCompoundBorder(
             tf.getBorder(),
             BorderFactory.createEmptyBorder(5, 10, 5, 10) // 패딩
@@ -83,13 +83,13 @@ public class ComponentSetter {
 	}
 	
 	public JPasswordField pf(String hint) {
-		JPasswordField pf = new JPasswordField(30);
-		pf.setDocument(new JTextFieldLimit(30)); // 글자수 제한
+		JPasswordField pf = new JPasswordField(18);
+		pf.setDocument(new JTextFieldLimit(18)); // 글자수 제한
 		pf.setBorder(BorderFactory.createCompoundBorder(
 				pf.getBorder(),
             BorderFactory.createEmptyBorder(5, 10, 5, 10) // 패딩
         ));
-		pf.setFont(new Font("D2Coding", Font.PLAIN, 15)); // 폰트 설정
+		pf.setFont(new Font("", Font.PLAIN, 15)); // 폰트 설정
 		pf.setBackground(Color.WHITE); // 배경색 설정
 		pf.setForeground(Color.BLACK); // 전경색 설정
 		pf.setCaretColor(Color.BLACK); // 캐럿 색상 설정

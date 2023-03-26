@@ -6,11 +6,11 @@ import javax.swing.JFrame;
 
 import prj.ldh.qcl.client.connect.QCLConnect;
 import prj.ldh.qcl.client.custom.TitleBar;
-import prj.ldh.qcl.client.view.form.LoginForm;
+import prj.ldh.qcl.client.view.panel.LoginPanel;
 
 public class QCLView extends JFrame {
 	public QCLConnect connect;
-	public LoginForm loginForm;
+	public LoginPanel loginForm;
 	
 	public QCLView() {
 		initObject();
@@ -22,7 +22,7 @@ public class QCLView extends JFrame {
 		// 서버연결용 객체 생성
 		connect = new QCLConnect(this);
 		// 로그인폼 생성 & 추가
-		loginForm = new LoginForm(this,connect);
+		loginForm = new LoginPanel(this,connect);
 		this.add(loginForm,BorderLayout.CENTER);
 	}
 	
@@ -44,7 +44,7 @@ public class QCLView extends JFrame {
         setVisible(true);
 	}
 	
-	public LoginForm getLoginForm() {
+	public LoginPanel getLoginForm() {
 		return loginForm;
 	}
 }

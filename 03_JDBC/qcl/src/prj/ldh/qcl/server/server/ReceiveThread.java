@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import prj.ldh.qcl.common.dto.Data;
 
-public class ReceiveThread extends Thread{
+public class ReceiveThread extends Thread {
 	Socket client;
 	ObjectMapper objectMapper;
 	BufferedReader in;
@@ -29,7 +29,6 @@ public class ReceiveThread extends Thread{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-//		start();
 	}
 	@Override
 	public void run() {
