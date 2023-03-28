@@ -3,6 +3,7 @@ package edu.kh.jdbc.main.view;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import edu.kh.jdbc.board.view.BoardView;
 import edu.kh.jdbc.common.Session;
 import edu.kh.jdbc.main.model.service.MainService;
 import edu.kh.jdbc.member.model.dto.Member;
@@ -15,6 +16,7 @@ public class MainView {
 	
 	// 회원 기능 화면 객체 생성
 	private MemberView memberView = new MemberView();
+	private BoardView boardView = new BoardView();
 	
 	/**
 	 * 메인 메뉴 출력
@@ -55,7 +57,7 @@ public class MainView {
 					
 					switch(input) {
 					case 1:memberView.memberMenu();break;
-					case 2:break;
+					case 2:boardView.boardMenu();break;
 					case 3:
 						System.out.println("\n=== 로그아웃 되었습니다 ===\n");
 						Session.loginMember = null;
@@ -136,7 +138,7 @@ public class MainView {
 				}
 			}
 			
-			// 비밀번호, 확인 입력을ㅇ 받아서 같을 때 까지 무한 반복
+			// 비밀번호, 확인 입력을 받아서 같을 때 까지 무한 반복
 			while(true) {
 				System.out.print("비밀번호 입력 : ");
 				memberPw = sc.next();
