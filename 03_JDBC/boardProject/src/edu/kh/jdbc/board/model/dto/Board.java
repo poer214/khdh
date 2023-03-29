@@ -1,5 +1,7 @@
 package edu.kh.jdbc.board.model.dto;
 
+import java.util.List;
+
 public class Board {
 	
 	private int boardNo;			// 게시글 번호
@@ -11,10 +13,9 @@ public class Board {
 	private String memberName;		// 회원 이름
 	private int commentCount;		// 댓글 수
 	
+	private List<Comment> commentList;	//댓글 목록
+	
 	public Board() {}
-	
-	
-
 
 	public Board(int boardNo, String boardTitle, String memberName, String createDate,
 			int readCount, int commentCount) {
@@ -78,10 +79,14 @@ public class Board {
 	public void setCommentCount(int commentCount) {
 		this.commentCount = commentCount;
 	}
+	public List<Comment> getCommentList() {
+		return commentList;
+	}
+	public void setCommentList(List<Comment> commentList) {
+		this.commentList = commentList;
+	}
 
-
-
-//	BOARD_NO, BOARD_TITLE, MEMBER_NM, CREATE_DT, READ_COUNT, COMMENT_COUNT
+	//	BOARD_NO, BOARD_TITLE, MEMBER_NM, CREATE_DT, READ_COUNT, COMMENT_COUNT
 	public String getSelectBoard() {
 		return String.format("%d | %s[%d] | %s | %s | %d",
 				boardNo,boardTitle,commentCount,memberName,createDate,readCount);

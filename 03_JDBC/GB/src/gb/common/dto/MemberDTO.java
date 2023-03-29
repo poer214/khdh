@@ -5,6 +5,7 @@ public class MemberDTO {
 	private String memberId;
 	private String memberPassword;
 	private String memberName;
+	private int memberGrade; // 일반회원 11, 관리자1 출제자2
 
 	public MemberDTO() {}
 	public MemberDTO(int memberNo, String memberId, String memberPassword, String memberName) {
@@ -36,5 +37,11 @@ public class MemberDTO {
 	}
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
+	}
+	public int getMemberGrade() {
+		return memberGrade;
+	}
+	public void setMemberGrade(int memberGrade) {
+		this.memberGrade = memberGrade;
 	}
 }
