@@ -12,7 +12,7 @@ public class GBDAO {
 	
 	public MemberDTO login(LoginDTO loginData) {
 		if(loginData.getId().equals(id) && loginData.getPassword().equals(pw)) {
-			return new MemberDTO(memberNo++,id+memberNo,pw,nm+memberNo);
+			return new MemberDTO(memberNo,id+memberNo,pw,nm+memberNo++);
 		}
 		return null;
 	}

@@ -1,0 +1,31 @@
+/* only-child */
+#test1 > p:only-child{
+    /* #test1의 자식이 p태그 하나만 있을 때 선택 */
+    background-color: steelblue;
+}
+
+#test2 > p:only-of-type{
+    /* #test2의 자식 중 p태그가 하나이면 선택 */
+    background-color: deeppink;
+}
+
+#test3:empty{
+    height: 30px;
+    background-color: brown;
+}
+
+.test4.cls4{
+    background-color: orange;
+}
+
+#test5>li:nth-of-type(4){
+    background-color: green;
+}
+
+#test5>li:not(.c5){
+    background-color: crimson;
+}
+
+#test6>li:last-of-type>span{
+    background-color: aqua;
+}

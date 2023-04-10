@@ -50,17 +50,25 @@ public class GBServer {
 			String receivedData = in.readUTF();
 			LoginDTO loginData = mapper.readValue(receivedData, LoginDTO.class);
 			member = dao.login(loginData);
+			System.out.println("로그인데이터 받음");
 			if(member != null) {
+				System.out.println("로그인 성공, 세션아이디 생성");
 				String sessionId = UUID.randomUUID().toString();
 				DTO response = new DTO("success",sessionId);
 				String sendData = mapper.writeValueAsString(response);
+				System.out.println("세션아이디 전송");
 				out.writeUTF(sendData);
+				System.out.println("클라이언트목록에 클라이언트 추가");
 				clients.add(client);
 				while(true) {
+					System.out.println("수신대기");
 					receivedData = in.readUTF();
 					System.out.println(sessionId + " : " + receivedData.toString());
+					System.out.println("받은 데이터 DTO객체화");
 					DTO dto = mapper.readValue(receivedData,DTO.class);
+					System.out.println("broadcastMsg() 호출");
 					broadcastMsg(member.getMemberName(),dto.getContent());
+					System.out.println("broadcastMsg() 끝");
 				}
 			} else {
 				System.out.println("로그인 실패");
@@ -82,14 +90,13 @@ public class GBServer {
 	
 	private void broadcastMsg(String name, String msg) {
 		try {
-			String sendData = mapper.writeValueAsString(new DTO("msg","["+name +"]"+ msg));
+			String sendData = mapper.writeValueAsString(new DTO("msg","["+name+"]"+ msg));
 			for(Socket s : clients) {
-				try(DataOutputStream out = new DataOutputStream(s.getOutputStream())){
-					out.writeUTF(sendData);
-				}
+				DataOutputStream out = new DataOutputStream(s.getOutputStream());
+				out.writeUTF(sendData);
 			}
 		} catch (Exception e) {
-			System.out.println("메시지 전송중 에러 발생");
+			System.out.println("메시지 전송중 예외 발생");
 			e.printStackTrace();
 		}
 	}

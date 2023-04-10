@@ -1,0 +1,33 @@
+/* flex 예제에서 공통적으로 사용할 스타일 지정 */
+div{
+    border: 1px solid black;
+    box-sizing: border-box;
+    /* content + padding + border == width / height */
+}
+
+pre{
+    font-size: 1rem;
+    font-family: '고딕';
+}
+
+pre > b {
+    font-size: 1.5em;
+    color: red;
+}
+pre > i {
+    font-size: 1.5em;
+}
+.item {
+    width: 75px;
+    height: 75px;
+}
+
+.item1{background-color: rgb(255, 72, 0);}
+.item2{background-color: rgb(255, 115, 0);}
+.item3{background-color: rgb(255, 230, 0);}
+.item4{background-color: rgb(187, 255, 0);}
+.item5{background-color: rgb(0, 255, 191);}
+.item6{background-color: rgb(0, 140, 255);}
+.item7{background-color: rgb(25, 0, 255);}
+.item8{background-color: rgb(204, 0, 255);}
+.item9{background-color: rgb(255, 0, 106);}

@@ -1,0 +1,29 @@
+.box {
+    border: 1px solid black;
+    padding: 10px;
+    box-sizing: border-box;
+
+}
+
+/* innerHTML 응용 */
+.parent {
+    width: 519px;
+    height: 302px;
+    overflow: auto;
+}
+
+#area1 {
+    display: grid;
+    grid-template-columns: repeat(5, 100px);
+    grid-auto-rows: 100px;
+    width: 500px;
+    height: 99.3%;
+    background-color: mediumseagreen;
+    border: 1px solid black;
+}
+
+.box2 {
+    box-sizing: border-box;
+    border: 1px solid red;
+    background-color: aquamarine;
+}

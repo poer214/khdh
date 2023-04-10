@@ -2,8 +2,6 @@ package gb.client.service;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.EOFException;
-import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -36,7 +34,6 @@ public class GBClientConnecter {
 				String msg = sc.nextLine();
 				sendData = mapper.writeValueAsString(new DTO("msg",msg));
 				out.writeUTF(sendData);
-				out.flush();
 			}
 		} catch (Exception e) {
 			System.out.println("연결 실패");
@@ -46,11 +43,13 @@ public class GBClientConnecter {
 	private void receiveThread(){
 		while (true) {
 			try {
+				System.out.println("1");
 				String receivedData = in.readUTF();
 				processJsonData(receivedData);
 			} catch (Exception e) {
 				System.out.println("데이터 수신중 예외 발생");
 				e.printStackTrace();
+				break;
 			}
 		}
 	}
@@ -66,7 +65,6 @@ public class GBClientConnecter {
 			break;
 		}
 	}
-	
 	
 	public static void main(String[] args) {
 		new GBClientConnecter();

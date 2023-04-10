@@ -17,6 +17,7 @@ import java.util.Scanner;
 import edu.kh.io.dto.Student;
 
 public class IOService {
+	
 	public IOService() {
 //		byteOutPut();
 //		charOutput();

@@ -1,0 +1,143 @@
+img{
+    width: 250px;
+    height: auto;
+    /* 이미지는 고유한 크기와 가로/세로 비율이 존재함
+        - width 지정 후 height를 미지정 또는 auto로 설정하면
+        기존 이미지 비율에 맞게 height가 자동 조정
+    */
+}
+
+/* 
+    css 속성은
+    모든 브라우저에서 동일하게 처리하지 않고
+    각자의 방법으로 처리하거나, 호환되지 않는 경우가 있다
+
+    이를 대비하기 위해 각 회사별 브라우저 호환을 위한 작성 방식이 존재
+    -ms- : 익스플로러, 엣지
+    -webkit : 크롬, 사파리
+    -o- : 오페라
+    -moz- : 모질라
+*/
+
+/* 좌우 이동 */
+.trans-x-2d:hover{
+    -ms-transform: translateX(100px);
+    -webkit-transform: translateX(100px);
+    -o-transform: translateX(100px);
+    -moz-transform: translateX(100px);
+    transform: translateX(100px);
+}
+/* 상하 이동 */
+.trans-y-2d:hover{
+    transform: translateY(100px);
+}
+/* 대각선 이동 */
+.trans-d-2d:hover{
+    transform: translate(100px,-100px);
+}
+/* 가로방향 확대/축소 */
+.trans-x-scale-2d:hover{
+    transform: scaleX(1.3);
+}
+/* 가로방향 확대/축소 */
+.trans-y-scale-2d:hover{
+    transform: scaleY(1.3);
+}
+/* 대각선 확대/축소 */
+.trans-scale-2d:hover{
+    transform: scale(2);
+    margin: 100px 0;
+}
+/* 요소회전 */
+.trans-rotate:hover{
+    transform: rotate(180deg);
+}
+
+/* 3차원 변형 */
+
+/* x,y,z축 이동 */
+.trans-3d:hover{
+    /* perspective : 관점, 원근법 */
+    /* perspective(값)
+        -> 값 : z축 방향의 길이(절대값)
+    */
+    transform: perspective(300px) translate3d(0px,0px,100px);
+
+}
+/* x축 회전 */
+.trans-rotate-x-3d:hover{
+    transform: perspective(300px) rotateX(45deg);
+}
+/* y축 회전 */
+.trans-rotate-y-3d:hover{
+    transform: perspective(300px) rotateY(45deg);
+}
+/* z축 회전 */
+.trans-rotate-z-3d:hover{
+    transform: perspective(300px) rotateZ(45deg);
+}
+/* x,y,z 회전 */
+.trans-rotate-3d:hover{
+    transform: perspective(300px) rotate3d(0.5,0.5,0.5,45deg);
+    /* rotate3d(x, y, z, 회전각도) */
+}
+
+.box{
+    width: 150px;
+    height: 150px;
+    border: 1px solid #000;
+    background-color: violet;
+
+    /* 스타일이 변형되는 기간(시간) 지정 */
+    transition-duration: 1s;
+}
+
+.test1:hover{
+    background-color: yellow;
+}
+.test2:hover{
+    transform: rotate3d(5,5,5,72000deg);
+    background-color: skyblue;
+    border-radius: 50%;
+}
+
+/* https://www.w3schools.com/cssref/css3_pr_transition-timing-function.php */
+.test3{
+    transition-duration: 5s;
+    transition-timing-function: cubic-bezier(0.3,0.3,1,0.5);
+    
+}
+.test3:hover{
+    transform: rotate(1080deg);
+    background-color: green;
+}
+
+/* 변형 딜레이(transition-delay) */
+.test4{
+    transition-delay: 2s;
+    border-radius: 50%;
+}
+.test4:hover{
+    transform: translateX(150px) rotate(180deg);
+}
+
+.car:hover img{
+    transition-duration: 2s;
+    transform: translateX(1500px);
+}
+.car img{width: 50px;}
+.car img:nth-child(1){
+    transition-timing-function: linear;
+}
+.car img:nth-child(2){
+    transition-timing-function: ease;
+}
+.car img:nth-child(3){
+    transition-timing-function: ease-in;
+}
+.car img:nth-child(4){
+    transition-timing-function: ease-out;
+}
+.car img:nth-child(5){
+    transition-timing-function: ease-in-out;
+}

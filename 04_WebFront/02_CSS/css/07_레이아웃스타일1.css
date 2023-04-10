@@ -1,0 +1,114 @@
+.area1{background-color: red;}
+.area2{background-color: orange;}
+.area3{background-color: yellow;}
+.area4{background-color: yellowgreen;}
+.area5{background-color: skyblue;}
+
+.block{
+    border: 1px solid black; /* 1px 실선 검정 테두리 */
+    width: 150px;
+    height: 150px;
+    color: black;
+    display: block; /* 요소 형식을 block으로 지정 */
+}
+
+.inline{ display: inline }
+
+.inline-block{ display: inline-block }
+
+/* 상하 2분할 */
+
+/* 감싸는 요소 스타일 지정 */
+.container-1{
+    border: 3px solid black;
+    width: 323px;
+    height: 450px;
+}
+
+.div1-1{ /* 위쪽 높이 30% */
+    height: 30%; /* 가변길이(부모요소 높이의 30%) */
+}
+.div1-2{ /* 아래쪽 높이 70% */
+    height: 70%; /* 가변길이(부모요소 높이의 70%) */
+}
+/* 높이만 지정했는데 옆으로 꽉찬 이유는? block형식이라서. */
+
+.container-2{
+    border: 3px solid black;
+    width: 500px;
+    height: 300px;
+}
+/* .div2-1{
+    height: 15%;
+}
+.div2-2{ 
+    height: 35%;
+}
+.div2-3{
+    height: 50%;
+} */
+.container-2{
+    display: flex;
+    flex-direction: row;
+    /* flex-direction: column; */
+}
+.div2-1{
+    flex: 1.5;
+}
+.div2-2{ 
+    flex: 3.5;
+}
+.div2-3{
+    flex: 5;
+}
+
+.container-3{
+    border: 5px solid red;
+    width: 400px;
+    height: 200px;
+    display: inline-block;
+}
+
+.container-3>div{
+    display: inline-block;
+    height: 100%;
+    width: 50%;
+}
+
+.container-3>div:first-child{background-color: pink;}
+.container-3>div:last-child{background-color: steelblue;}
+
+.container-4{
+    border: 1px solid black;
+    width: 300px;
+    height: 300px;
+    display: inline-block;
+    box-sizing: border-box;
+}
+.container-4>div{
+    display: inline-block;
+    height: 50%;
+    width: 50%;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+
+.container-5{
+    border: 1px solid black;
+    width: 300px;
+    height: 300px;
+}
+
+.row{
+    width: 100%;
+    height: 50%;
+}
+.col{
+    width: 50%;
+    height: 100%;
+    display: inline-block;
+}
+
+
+/* display : none */
+.none-test{ display: none}

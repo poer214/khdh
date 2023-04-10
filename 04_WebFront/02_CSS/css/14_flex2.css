@@ -1,0 +1,21 @@
+.flex-container{
+    height: 75vh; /* 현재 화면 높이의 75% */
+    /* vh(Viewport Height : 화면의 높이
+                            100vh = 100% */
+    display: flex;
+
+    flex-wrap: nowrap;/* 기본값 */
+    flex-wrap: wrap;
+    /* flex-wrap: wrap-reverse; */
+
+    /* flex-flow : flex-direction + flex-wrap; */
+    /* flex-flow: column wrap-reverse; */
+
+    /* align-content : corssaxis */
+    align-content: flex-start;
+    align-content: flex-end;
+    align-content: center;
+    /* align-content: space-around; */
+    /* align-content: space-evenly; */
+    /* align-content: space-between; */
+}
