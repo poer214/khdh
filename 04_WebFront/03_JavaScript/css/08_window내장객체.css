@@ -1,0 +1,22 @@
+#loadingTime{
+    border:1px solid black;
+    width: 100px;
+    height: 30px;
+    font-size: 24px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#clock{
+    border:1px solid black;
+    width: 300px;
+    height: 100px;
+    font-size: 50px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}

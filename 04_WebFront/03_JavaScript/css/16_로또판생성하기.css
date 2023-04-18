@@ -1,0 +1,37 @@
+
+#lottoBoard{
+    border: 1px solid black;
+    width: 250px;
+    height: 450px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.number{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    width: 30px;
+    height: 30px;
+    margin: 10px 10px;
+    border: 1px solid black;
+    border-radius: 50%;
+    user-select: none;
+    cursor: pointer;
+}
+
+.active{background-color: orange;}
+
+
+#history{
+    width: 305px;
+}
+
+.item{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    border: 1px solid black;
+}

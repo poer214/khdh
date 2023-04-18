@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    두 수를 입력 받아 버튼에 작성된 연산을 수행하는 계산기 만들기
+    <!-- 
+        if, for, while, switch, break, continue 사용 가능
+     -->
+     <hr>
+     첫 번째 값 : <input type="text" id="num1"> <br>
+     두 번째 값 : <input type="text" id="num2"> <br>
+
+     <!--
+        매개변수 this는 무엇일까?
+        this == 클릭된 버튼(요소)
+
+        -> 이벤트가 발생한 요소 자체를 나타냄
+     -->
+
+     <button onclick="calc(this)">+</button>
+     <button onclick="calc(this)">-</button>
+     <button onclick="calc(this)">*</button>
+     <button onclick="calc(this)">/</button>
+     <button onclick="calc(this)">%</button>
+
+     <br><br>
+     계산 결과 : <span class="result"><!-- 여기에 결과 출력 --></span>
+
+     <script>
+        function calc(){
+            const num1 = Number(document.querySelector("#num1").value);
+            const num2 = Number(document.querySelector("#num2").value);
+            const sign = this.innerHTML;
+            const result = document.querySelector(".result");
+            
+            if(sign == '+') result.innerHTML=num1+num2;
+            else if(sign == '-') result.innerHTML=num1-num2;
+            else if(sign == '*') result.innerHTML=num1*num2;
+            else if(sign == '/') result.innerHTML=num1/num2;
+            else if(sign == '%') result.innerHTML=num1%num2;
+        }
+    </script>
+</body>
+</html>

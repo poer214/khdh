@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+
+<!--
+	web.xml (배포서술자(설명서))
+ 	
+ -->
+
+  <display-name>ServletProject</display-name>
+  
+  <!-- 메인 페이지로 사용할 파일 명 목록 -->
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+  </welcome-file-list>
+  
+  <!-- 특정  -->
+  	<!-- 등록된 Servlet을 지칭할 별칭 -->
+  	<!-- Servlet으로 등록할 클래스의 패키지명+클래스명 -->
+  <!-- 요청 주소를 처리할 Servlet을 연결 -->
+  	<!-- 연결할 Servlet 이름(별칭) -->
+  	<!-- 연결할 요청 주소 -->
+  <servlet>
+    <servlet-name>ex1</servlet-name>
+    <servlet-class>edu.kh.servlet.controller.ExampleController1</servlet-class>
+  </servlet>
+  <!-- <servlet>
+    <servlet-name>ex2</servlet-name>
+    <servlet-class>edu.kh.servlet.controller.ExampleController2</servlet-class>
+  </servlet> -->
+  
+  <servlet-mapping>
+    <servlet-name>ex1</servlet-name>
+    <url-pattern>/example1.do</url-pattern>
+  </servlet-mapping>
+  <!-- <servlet-mapping>
+    <servlet-name>ex2</servlet-name>
+    <url-pattern>/example2.do</url-pattern>
+  </servlet-mapping> -->
+</web-app>

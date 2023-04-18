@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>청원하기</title>
+    <link rel="stylesheet" href="../css/start-a-petition.css">
+</head>
+<body>
+    <div class="progress-bar"><div class="progress"></div></div>
+    <form action="">
+        <!-- page1 -->
+        <div id="page1" class="page container border current">
+            <h1>변화를 향한 첫 걸음</h1>
+            <p>청원 범위 선택:</p>
+            <div class="selectContainer border">
+                <span class="item selectedItem" name="scope" value="local">
+                    <span class="icon pointer-events-none">icon</span>
+                    <span class="pointer-events-none">지역</span>
+                </span><span class="item" name="scope" value="national">
+                    <span class="icon pointer-events-none">icon</span>
+                    <span class="pointer-events-none">국가</span>
+                </span><span class="item" name="scope" value="global">
+                    <span class="icon pointer-events-none">icon</span>
+                    <span class="pointer-events-none">세계</span>
+                </span>
+            </div>
+            <div id="page1Tip" class="tip center"><span class="icon">icon</span><span> 지역 청원은 승리할 확률이 50% 더 높습니다.</span></div>
+            
+        </div>
+        
+        <!-- page2 -->
+        <div id="page2" class="page container border">
+            <h1>이 청원에 가장 적합한 주제는 무엇인가요?</h1>
+            <div id="themeContainer" class="border">
+                <span class="theme" name="theme">임시데이터1</span>
+                <span class="theme" name="theme">임시데이터2</span>
+                <span class="theme" name="theme">임시데이터3</span>
+                <span class="theme" name="theme">임시데이터4</span>
+                <span class="theme" name="theme">임시데이터5</span>
+                <span class="theme" name="theme">임시데이터6</span>
+                <span class="theme" name="theme">임시데이터7</span>
+                <span class="theme" name="theme">임시데이터8</span>
+                <span class="theme" name="theme">임시데이터9</span>
+                <span class="theme" name="theme">임시데이터10</span>
+                <span class="theme">직접 입력</span>
+            </div>
+        </div>
+        
+        <!-- page3 -->
+        <div id="page3" class="page container border">
+            <h1>청원 제목을 작성하세요.</h1>
+            <p>사람들에게 당신이 바꾸고 싶은 것을 말하세요.</p>
+            <div id="titleContainer">
+                <div>청원 제목</div>
+                <input type="text" name="title" id="inputTitle">
+                <div id="countContainer"><div id="charCount">0</div><div>/90</div></div>
+            </div>
+        </div>
+        
+        <!-- page4 -->
+        <div id="page4" class="page container border">
+            <h1>당신의 이야기를 들려주세요.</h1>
+        </div>
+        
+        <!-- page5 -->
+        <div id="page5" class="page container border">
+            <h1>이미지를 추가하세요.</h1>
+        </div>
+        
+        <!-- page6 -->
+        <div id="page6" class="page container border">
+            <h1>당신의 청원이 준비되었습니다.</h1>
+        </div>
+        
+        <div class="btnContainer border">
+            <button type="button" id="prevBtn" class="btn">이전으로</button>
+            <button type="button" id="nextBtn" class="btn">다음으로</button>
+            <button type="submit" id="submitBtn" class="btn">청원서 최종 제출</button>
+        </div>
+    </form>
+    <script src="../js/start-a-petition.js"></script>
+</body>
+</html>
