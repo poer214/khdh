@@ -1,0 +1,67 @@
+*{
+    /* border: 1px solid black; */
+    box-sizing: border-box;
+}
+
+.innerContainer{
+    width: 960px;
+}
+
+.center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.row{
+    margin: 0px -10px;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.largeFont{
+    font-size: 1.5em;
+}
+
+.block{
+    display: block;
+}
+
+.smallFont{
+    font-size: 0.8em;
+}
+
+.flexRow{
+    display: flex;
+    flex-direction: row;
+}
+
+.flexCol{
+    display: flex;
+    flex-direction: column;
+}
+
+.gray{
+    color:gray;
+}
+
+#accountInfoContainer{
+    /* height: 500px; */
+    border-bottom: 1px solid #999;
+    padding : 60px 0px 15px 0px;
+    margin: 0px -10px;
+}
+
+#accountInfo>*{
+    margin: 5px;
+}
+
+#profileImg{
+    border-radius: 50%;
+}
+
+#settingsMenuContainer{
+
+}

@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 // Servlet 등록 + 주소 매핑
 @WebServlet("/test/result")
 public class TestController extends HttpServlet {
-	
 	// GET방식 요청 처리 메서드 오버라이딩
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

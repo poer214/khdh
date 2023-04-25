@@ -28,5 +28,50 @@
     <a href="/test/result">페이지 이동</a>
     
 
+    <hr>
+
+    <h1>피자 주문하기</h1>
+
+    <form action="/pizzaOrder" method="POST">
+
+        피자 : 
+        <select name="pizza">
+            <option value="1">치즈 피자(8000)</option>
+            <option value="2">콤비네이션 피자(9000)</option>
+            <option value="3">핫 치킨 피자(10000)</option>
+        </select>
+
+        <br><br>
+
+        사이즈 <br>
+        <label>R<input type="radio" name="size" value="R"></label>
+        <label>L<input type="radio" name="size" value="L"></label>
+
+        <br><br>
+
+        수량 :
+        <button id="minus" type="button">-</button>
+        <span id="amount">0</span>
+        <button id="plus" type="button">+</button>
+
+        <input type="hidden" name="amount" value="0">
+        <br><br>
+        <button>주문하기</button>
+    </form>
+
+    <script>
+        const minus = document.getElementById('minus');
+        const plus = document.getElementById('plus');
+        const amount = document.getElementById('amount');
+        const input = document.querySelector('[name="amount"]');
+
+        plus.addEventListener('click',()=>{
+            input.value = ++amount.innerText;
+        })
+        minus.addEventListener('click',()=>{
+            if(amount.innerText == 0) return;
+            input.value = --amount.innerText;
+        })
+    </script>
 </body>
 </html>

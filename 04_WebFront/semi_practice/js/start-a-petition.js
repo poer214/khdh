@@ -7,6 +7,7 @@ const progressBar = document.querySelector('.progress');
 const inputTitle = document.getElementById('inputTitle');
 const countContainer = document.getElementById('countContainer');
 const charCount = document.getElementById('charCount');
+const btnContainer = document.getElementById('btnContainer');
 const titleCharCheck = () =>{
   const remainingChars = inputTitle.value.length;
   charCount.textContent = String(remainingChars);
@@ -30,10 +31,13 @@ const updatePage = () => {
   if(currentPage == pages.length-1){
     nextBtn.style.display = 'none';
     sbmtBtn.style.display = 'block';
+    btnContainer.style.width = '960px';
+    btnContainer.classList.add('sticky');
   }
   else {
     nextBtn.style.display = 'block';
     sbmtBtn.style.display = 'none';
+    btnContainer.style.width = '600px';
   }
 
   if(currentPage == 2){
