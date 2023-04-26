@@ -13,8 +13,14 @@
     justify-content: center;
 }
 
+.row-center{
+    display: flex;
+    align-items: center;
+    
+}
+
 .row{
-    margin: 0px -10px;
+    /* margin: 0px -10px; */
 }
 
 .bold{
@@ -51,17 +57,56 @@
     /* height: 500px; */
     border-bottom: 1px solid #999;
     padding : 60px 0px 15px 0px;
-    margin: 0px -10px;
+    /* margin: 0px -10px; */
 }
 
-#accountInfo>*{
+#accountInfo > *{
     margin: 5px;
 }
 
-#profileImg{
+.profileImg{
     border-radius: 50%;
 }
 
 #settingsMenuContainer{
-
+    display: flex;
+    flex-direction: column;
+    width: 620px;
 }
+#settingsMenuContainer>*{
+    margin: 20px 0px;
+}
+
+.menuContainer{
+    width: 100%;
+}
+
+.menuContainer > a {
+    text-decoration: none;
+    color: black;
+}
+.menuContainer > a:hover {
+    color: #2DB400;
+}
+
+hr{
+    width: 100%;
+}
+
+.h1{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.row-center > * {
+    margin: 20px 0;
+}
+
+.between{
+    justify-content: space-between;
+    height: 500px;
+}
+
+/* main{
+    margin-bottom: 250px;
+} */

@@ -26,7 +26,7 @@
     
     <section class="content">
         <section class="content-1">
-            <h3>로그인된 회원 정보</h3>
+            <h3>로그인된 회원 정보 </h3>
             ${loginMember}
             
         </section>
@@ -39,8 +39,8 @@
                     <form action="/member/login" method="POST" id="loginFrm">
                         <fieldset class="id-pw-area">
                             <section>
-                                <input type="text" name="inputEmail" placeholder="이메일" autocomplete="off">
-                                <input type="password" name="inputPw" placeholder="비밀번호">
+                                <input type="text" name="memberEmail" placeholder="이메일" autocomplete="off">
+                                <input type="password" name="memberPw" placeholder="비밀번호">
                             </section>
                             <section><button>로그인</button></section>
                         </fieldset>
