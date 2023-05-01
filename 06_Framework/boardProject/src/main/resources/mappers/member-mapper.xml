@@ -75,12 +75,34 @@
 
 	<!-- <select id="login" parameterType="edu.kh.project.member.model.dto.Member"> -->
 	<select id="login" parameterType="Member" resultMap="member_rm">
-		SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_NICKNAME,
+		SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_NICKNAME, MEMBER_PW,
 		MEMBER_TEL, MEMBER_ADDR, PROFILE_IMG, AUTHORITY,
 		TO_CHAR(ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"') AS ENROLL_DATE
 		FROM MEMBER
 		WHERE MEMBER_DEL_FL = 'N'
 		AND MEMBER_EMAIL = #{memberEmail}
-		AND MEMBER_PW = #{memberPw}
 	</select>
+	
+	<!-- insert, update, delete와 같은 DML구문은
+		수행 결과가 항상 성공한 행의 개수(int 자료형)으로 고정
+		-> resultType을 작성하지 않는다! (항상 int) -->
+	
+	
+	<!-- 회원 가입 -->
+	<!--
+		parameterType="edu.kh.project.member.model.dto.Member"
+		-> parameterType="Member"
+		-> mybatis-config.xml에 지정된 별칭 **
+	-->
+	<insert id="signUp" parameterType="Member">
+		INSERT INTO MEMBER
+		VALUES(
+			SEQ_MEMBER_NO.NEXTVAL
+			, #{memberEmail}
+			, #{memberPw}
+			, #{memberNickname}
+			, #{memberTel}
+			, #{memberAddress}
+			, NULL, DEFAULT, DEFAULT, DEFAULT)
+</insert>
 </mapper>

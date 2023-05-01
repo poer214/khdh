@@ -81,9 +81,14 @@
     width: 100%;
 }
 
+
 .menuContainer > a {
     text-decoration: none;
     color: black;
+    padding: 20px 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 .menuContainer > a:hover {
     color: #2DB400;
@@ -104,7 +109,6 @@ hr{
 
 .between{
     justify-content: space-between;
-    height: 500px;
 }
 
 /* main{

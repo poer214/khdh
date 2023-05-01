@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p id="out"></p>
+    <script>
+        // URL 쿼리 파라미터 추출
+        const urlParams = new URLSearchParams(window.location.search);
+        const inputHash = urlParams.get('input');
+
+        // 해시 값을 표시하는 함수
+        function showHashedValue(hash) {
+            document.getElementById('out').textContent = 'Hashed value: ' + hash;
+        }
+
+        // 해시 값을 표시
+        showHashedValue(inputHash);
+    </script>
+</body>
+
+</html>

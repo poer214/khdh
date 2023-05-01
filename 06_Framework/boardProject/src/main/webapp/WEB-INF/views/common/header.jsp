@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<link rel="stylesheet" href="/resources/css/main-style.css">
+<script src="https://kit.fontawesome.com/f7459b8054.js" crossorigin="anonymous"></script>
 <header>
     <section>
         <!-- 클릭 시 메인 페이지로 이동하는 로고 -->
-        <a href=""></a>
-        <img src="/resources/images/logo.png" alt="로고" id="homeLogo">
+        <a href="/">
+            <img src="/resources/images/logo.png" alt="로고" id="homeLogo">
+        </a>
     </section>
     <section>
         <!-- 검색어 입력할 수 있는 화면 -->
@@ -32,7 +35,35 @@
             </form>
         </article>
     </section>
+
     <section></section>
+
+
+    <!-- 우측 상단 드롭다운 메뉴 -->
+    <div class="header-top-menu">
+
+        <c:choose>
+            <c:when test="${empty loginMember}">
+                <%-- 로그인 X --%>
+                <a href="/">메인 페이지</a> | <a href="/member/login">로그인</a>
+            </c:when>
+            <c:otherwise>
+                <%-- 로그인 O --%>
+                <label for="headerMenuToggle">
+                    ${loginMember.memberNickname} <i class="fa-solid fa-caret-down"></i>
+                </label>
+
+                <input type="checkbox" id="headerMenuToggle">
+                <div class="header-menu">
+                    <a href="/myPage/info">내 정보</a>
+                    <a href="/member/logout">로그아웃</a>
+                </div>
+            </c:otherwise>
+        </c:choose>
+    </div>
+
+
+
 </header>
 <nav>
     <ul>

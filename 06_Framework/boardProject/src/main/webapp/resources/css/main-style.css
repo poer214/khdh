@@ -18,9 +18,9 @@ main {
 }
 
 /* header */
-header{
-    height: 200px;
+header {
     display: flex;
+    height: 200px;
     flex-direction: row;
 }
 
@@ -77,9 +77,9 @@ header>section:nth-child(2){
 
 
 
-header>:last-child{
+/* header>:last-child{
     width: 15%;
-}
+} */
 
 
 /* nav */
@@ -352,4 +352,62 @@ a{
 .my-info > p{
 	margin: 0;
 	color : gray;
+}
+
+/* 헤더 오른쪽 상단 메뉴 */
+
+header{
+    position: relative;
+}
+
+.header-top-menu{
+    position: absolute;
+    right: 0;
+    top: 10px;
+}
+
+.header-top-menu{
+    font-size:15px;
+    font-weight:bold;
+}
+
+/* 헤더 메뉴 체크박스 */
+#headerMenuToggle{display: none;}
+
+/* 오른쪽 상단 닉네임 부분 */
+label[for='headerMenuToggle']{cursor:pointer;}
+label[for='headerMenuToggle']:hover{text-decoration:underline;}
+
+/* 체크박스 다음 형제요소 div */
+#headerMenuToggle+div{
+    display: none;
+}
+
+#headerMenuToggle:checked + div{
+    display: block;
+}
+
+.header-menu{
+    position: absolute;
+    width: 100px;
+    height: 80px;
+    right: 0;
+    margin-top: 5px;
+    border: 1px solid black;
+}
+
+.header-menu > a{
+    display: flex;
+    height: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-menu > a:first-child{
+    border-bottom: 1px solid #ccc;
+}
+
+.header-menu > a:hover{
+    background-color: #455ba8;
+    color: white;
 }
