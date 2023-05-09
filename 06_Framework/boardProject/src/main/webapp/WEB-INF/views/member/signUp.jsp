@@ -65,7 +65,7 @@
                     placeholder="비밀번호 확인" maxlength="20" >
                 </div>
 
-                <span class="signUp-message" id="pwMessage">영어,숫자,특수문자(!,@,#,-,_) 6~20글자 사이로 입력해주세요.</span>
+                <span class="signUp-message" id="pwMessage">영어, 숫자, 특수문자(!,@,#,-,_) 6~20글자 사이로 입력해주세요.</span>
 
 
                 <!-- 닉네임 입력 -->
@@ -77,7 +77,7 @@
                     <input type="text" name="memberNickname" id="memberNickname" placeholder="닉네임" maxlength="10" >
                 </div>
 
-                <span class="signUp-message" id="nickMessage">한글,영어,숫자로만 2~10글자</span>
+                <span class="signUp-message" id="nickMessage">한글, 영어, 숫자로만 2~10글자</span>
 
 
                 <!-- 전화번호 입력 -->
@@ -89,7 +89,7 @@
                     <input type="text" name="memberTel" id="memberTel" placeholder="(- 없이 숫자만 입력)" maxlength="11">
                 </div>
 
-                <span class="signUp-message" id="telMessage">전화번호를 입력해주세요.(- 제외)</span>
+                <span class="signUp-message" id="telMessage">전화번호를 입력해주세요. (- 제외)</span>
 
 
 

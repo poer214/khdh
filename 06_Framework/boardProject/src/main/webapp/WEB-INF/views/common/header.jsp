@@ -67,10 +67,17 @@
 </header>
 <nav>
     <ul>
-        <li><a href="#">공지사항</a></li>
+        <%-- <li><a href="#">공지사항</a></li>
         <li><a href="#">자유 게시판</a></li>
         <li><a href="#">질문 게시판</a></li>
         <li><a href="#">FAQ</a></li>
-        <li><a href="#">1:1 문의</a></li>
+        <li><a href="#">1:1 문의</a></li> --%>
+
+        <c:forEach items="${applicationScope.boardTypeList}" var="boardType">
+            <li>
+                <a href="/board/${boardType.BOARD_CODE}">${boardType.BOARD_NAME}</a>
+            </li>
+        </c:forEach>
+
     </ul>
 </nav>

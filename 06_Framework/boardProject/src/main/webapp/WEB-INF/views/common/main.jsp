@@ -26,6 +26,41 @@
         <section class="content-1">
             <h3>로그인된 회원 정보 </h3>
             ${loginMember}
+
+            <h3>닉네임이 일치하는 회원의 전화번호 조회</h3>
+            
+            <input type="text" id="inputNickname">
+            <button id="btn1">조회</button>
+            <h4 id="result1">전화번호 나오는 곳</h4>
+
+            <hr>
+
+            <h3>이메일을 입력 받아 일치하는 회원의 정보를 모두 조회</h3>
+            email : <input type="text" id="inputEmail">
+            <button id="btn2">조회</button>
+            <ul id="result2"></ul>
+
+            <hr>
+
+            <h3>이메일이 일부라도 일치하는 모든 회원 조회</h3>
+            검색어 : <input type="text" id="input">
+            <button id="btn3">조회</button>
+            <table border="1" style="border-collapse:collapse">
+                <thead>
+                    <tr>
+                        <th>회원 번호</th>
+                        <th>이메일</th>
+                        <th>닉네임</th>
+                    </tr>
+                </thead>
+                <tbody id="result3">
+                    <tr>
+                        <td>1</td>
+                        <td>샘플</td>
+                        <td>데이터</td>
+                    </tr>
+                </tbody>
+            </table>
             
         </section>
         <section class="content-2">
