@@ -20,7 +20,7 @@ import edu.kh.project.member.model.dto.Member;
 
 //@WebFilter("/LoginFilter") 해당 클래스를 필터로 등록하고 지정된 주소 요청이 올 때 마다 동작
 @WebFilter(filterName = "loginFilter",
-			urlPatterns = {"/myPage/*"})
+			urlPatterns = {"/myPage/*", "/board2/*"})
 public class LoginFilter implements Filter {
 	
 	public void init(FilterConfig fConfig) throws ServletException {

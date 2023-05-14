@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -33,7 +34,7 @@ import edu.kh.project.member.model.service.MemberService;
 @Controller	// 요청/응답 클래스 + bean 등록(Spring이 관리하는 클래스)
 @RequestMapping("/member") // 공통된 주소 앞부분 작성
 						   // member로 시작하는 요청은 해당 컨트롤러에서 처리
-@SessionAttributes({"loginMember","message"}) // Model의 이름(key)를 적으면 Session
+@SessionAttributes({"loginMember"}) // Model의 이름(key)를 적으면 Session
 public class MemberController {
 	
 	@Autowired
@@ -128,9 +129,11 @@ public class MemberController {
 	public String login(Member inputMember, Model model
 			, @RequestHeader(value="referer") String referer
 			, @RequestParam(value="saveId", required=false) String saveId
-			,HttpServletResponse resp
-			,RedirectAttributes ra
-			,SessionStatus session) {
+			, HttpServletResponse resp
+			, RedirectAttributes ra
+			, @SessionAttribute(value="prevPage", required=false) String prevPage
+			, HttpServletRequest req
+			, SessionStatus session) {
 		// Member inputMember : 커맨드 객체(필드에 파라미터 담겨있음)
 		
 		// @RequestHeader(value="referer") String referer
@@ -160,9 +163,15 @@ public class MemberController {
 		
 		// 로그인 결과에 따라 리다이렉트 경로를 다르게 지정
 		String path = "redirect:";
-		
+//		String prevPage = (String) req.getSession().getAttribute("prevPage");
+		System.out.println(prevPage);
 		if(loginMember != null) { // 로그인 성공 시
-			path += "/"; // 메인 페이지로 리다이렉트
+			if(prevPage == null) // 이전 페이지가 없다면
+				path += "/"; // 메인 페이지로 리다이렉트
+			else { // 이전 페이지가 없다면
+				path+=prevPage; // 이전 페이지로 리다이렉트
+				req.getSession().removeAttribute("prevPage"); // 이전 페이지 값 비움
+			}
 			
 			// Session에 로그인한 회원 정보 추가
 			// Servlet -> HttpSession.setAttriubute(key, value);
@@ -247,12 +256,12 @@ public class MemberController {
 //			model.addAttribute("message","로그인 실패!");
 //			session.setComplete();
 		}
-		return "redirect:/";
+		return path;
 	}
 	
 	// 로그아웃
 		@GetMapping("/logout")
-		public String logout(SessionStatus status, HttpSession session) {
+		public String logout(SessionStatus status, HttpSession session, HttpServletRequest req, @RequestHeader(value="referer") String referer) {
 			
 			// 세션 무효화
 			// Servlet -> HttpSession.invalidate()
@@ -264,7 +273,7 @@ public class MemberController {
 			
 			status.setComplete();
 //			session.invalidate();
-			return "redirect:/";
+			return "redirect:"+referer;
 		}
 		
 		
@@ -275,10 +284,17 @@ public class MemberController {
 		
 		// 로그인 전용 화면 이동
 		@GetMapping("/login")
-		public String login() {
-			return "member/login";
+		public String login(HttpSession session, @SessionAttribute(value="loginMember", required=false) Member loginMember
+				,Model model, @RequestHeader(value="referer", required=false) String referer) {
+			session.setAttribute("prevPage",referer);
+			String path = null;
+			if(loginMember == null) {
+				path = "member/login";
+			} else {
+				path = "redirect:/";
+			}
+			return path;
 		}
-		
 		
 		@GetMapping("/signUp")
 		public String signUp(){

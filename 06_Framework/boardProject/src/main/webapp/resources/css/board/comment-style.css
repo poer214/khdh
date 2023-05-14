@@ -1,22 +1,25 @@
+#commentArea{
+	margin-top:10px;
+}
 /*댓글*/
 .comment-write-area {
 	display: flex;
 	min-height: 85px;
 	justify-content: center;
 	
-	margin: 30px 0;
+	/* margin: 30px 0; */
 }
 
 .comment-write-area > textarea{
-	flex-basis: 75%;
+	flex-basis: 100%;
     margin-right: 10px;
 	resize: none;
+	padding: 5px;
 }
 
 .comment-write-area > button{
-	flex-basis: 7%;
+	flex-basis: 10%;
     height: 85px;
-
 	font-weight: bold;
     border: 0;
     background-color: #455ba8;
@@ -109,4 +112,13 @@
     height: 90px;
     resize: none;
     margin-top : 20px;
+}
+
+
+
+
+
+/* 댓글 내용 */
+.comment-content{
+	white-space: pre-wrap; /* 작성된 문자열 모양 그대로(공백 유지) */
 }

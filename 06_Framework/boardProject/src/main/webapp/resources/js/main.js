@@ -167,17 +167,3 @@ btn3.addEventListener("click", ()=> {
 //         console.log(err);
 //     });
 // })
-
-
-const item = document.createElement('div');
-item.classList.add("item");
-item.innerHTML=`<img src=${obj.img}><div>${obj.content}</div>`;
-
-container.append(item);
-
-
-
-item.innerHTML=`
-<div class=></div>
-
-`

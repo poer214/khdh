@@ -4,36 +4,38 @@
 <div id="commentArea">
     <!-- 댓글 목록 -->
     <div class="comment-list-area">
-        
         <ul id="commentList">
-
-            <!-- 부모 댓글 -->
-            <li class="comment-row">
-                <p class="comment-writer">
-
-                    <!-- 프로필 이미지 -->
-                    <img src="/resources/images/user.png">
-
-                    <!-- 닉네임 -->
-                    <span>닉네임</span>
-                    
-                    <!-- 작성일 -->
-                    <span class="comment-date">2023년 05월 9일 12시 19분 40초</span>
-                </p>
-                
-                <!-- 댓글 내용 -->
-                <p class="comment-content">부모 댓글 입니다</p>
-
-
-                <!-- 버튼 영역 -->
-                <div class="comment-btn-area">
-                    <button>답글</button>   
-                        
-                    <!-- 로그인 회원과 댓글 작성자가 같은 경우 -->  
-                    <button>수정</button>     
-                    <button>삭제</button>
-                </div>
-            </li>
+            <c:forEach items="${board.commentList}" var="comment">
+                <!-- 부모 댓글 -->
+                <li class="comment-row">
+                    <p class="comment-writer">
+                        <!-- 프로필 이미지 -->
+                        <c:choose>
+                            <c:when test="${empty comment.profileImage}">
+                                <img src="/resources/images/user.png">
+                            </c:when>
+                            <c:otherwise>
+                                <img src="${comment.profileImage}">
+                            </c:otherwise>
+                        </c:choose>
+                        <!-- 닉네임 -->
+                        <span>${comment.memberNickname}</span>
+                        <!-- 작성일 -->
+                        <span class="comment-date">${comment.commentCreateDate}</span>
+                    </p>
+                    <!-- 댓글 내용 -->
+                    <p class="comment-content">${comment.commentContent}</p>
+                    <!-- 버튼 영역 -->
+                    <div class="comment-btn-area">
+                        <button>답글</button>   
+                        <!-- 로그인 회원과 댓글 작성자가 같은 경우 -->  
+                        <c:if test="${loginMember.memberNo == board.memberNo}">
+                            <button id="updateBtn">수정</button>
+                            <button id="deleteBtn">삭제</button>
+                        </c:if>
+                    </div>
+                </li>
+            </c:forEach>
 
             <!-- 자식 댓글 -->
             <li class="comment-row child-comment">
@@ -71,7 +73,5 @@
             댓글<br>
             등록
         </button>
- 
     </div>
-
 </div>

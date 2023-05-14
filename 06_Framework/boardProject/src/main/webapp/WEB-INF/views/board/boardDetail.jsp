@@ -15,11 +15,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${boardName}</title>
-
     <link rel="stylesheet" href="/resources/css/board/boardDetail-style.css">
     <link rel="stylesheet" href="/resources/css/board/comment-style.css">
-
-    <script src="https://kit.fontawesome.com/f7459b8054.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <main>
@@ -27,111 +24,167 @@
 
         <section class="board-detail">  
             <!-- 제목 -->
-            <h1 class="board-title">제목  <span> - ${boardName}</span>    </h1>
+            <h1 class="board-title">${board.boardTitle}<span> - ${boardName}</span>    </h1>
 
             <!-- 프로필 + 닉네임 + 작성일 + 조회수 -->
             <div class="board-header">
                 <div class="board-writer">
 
                     <!-- 프로필 이미지 -->
-                    <img src="/resources/images/user.png">
+                    <c:choose>
 
-                    <span>닉네임</span>
+                        <%-- 프로필 이미지가 없을 경우 --%>
+                        <c:when test="${empty board.profileImage}">
+                            <%-- 기본 이미지 출력 --%>
+                            <img src="/resources/images/user.png">
+                        </c:when>
+                        <%-- 프로필 이미지가 없지 않은 경우(있는 경우) --%>
+                        <c:otherwise>
+                            <img src="${board.profileImage}">
+                        </c:otherwise>
+                    </c:choose>
+
+                    <span>${board.memberNickname}</span>
 
                     
                     <!-- 좋아요 하트 -->
                     <span class="like-area">
-                        <i class="fa-regular fa-heart" id="boardLike"></i>
-                        <%-- <i class="fa-solid fa-heart" id="boardLike"></i> --%>
-
+                        <%-- 좋아요 누른 적이 없거나, 비로그인 --%>
+                        <c:if test="${empty likeCheck}">
+                            <i class="fa-regular fa-heart" id="boardLike"></i>
+                        </c:if>
+                        <%-- 좋아요 누른 적이 있을 때 --%>
+                        <c:if test="${not empty likeCheck}">
+                            <i class="fa-solid fa-heart" id="boardLike"></i>
+                        </c:if>
                         <span>${board.likeCount}</span>
                     </span>
 
                 </div>
 
                 <div class="board-info">
-                    <p> <span>작성일</span> 2023년 05월 09일 10:33:21 </p>     
+                    <p> <span>작성일</span>${board.boardCreateDate}</p>     
 
                     <!-- 수정한 게시글인 경우 -->
-                    <p> <span>마지막 수정일</span>   2023년 05월 09일 11:48:50 </p>   
+                    <c:if test="${not empty board.boardUpdateDate}" >
+                        <p> <span>마지막 수정일</span>${board.boardUpdateDate} </p>
+                    </c:if>
 
-                    <p> <span>조회수</span>  10 </p>                    
+                    <p> <span>조회수</span>${board.readCount}</p>                    
                 </div>
             </div>
 
             <!-- 이미지가 있을 경우 -->
-                
+            <c:if test="${not empty board.imageList}">
+                <!-- 썸네일 영역(썸네일이 있을 경우) -->
+                <%-- 
+                    - 이미지는 IMG_ORDER 오름차순으로 정렬된다.
+                    - IMG_ORDER의 값이 0인 이미지가 썸네일이다.
+                    -> imageList에 썸네일이 있다면
+                        조회 되었을 때 IMG_ORDER가 0인 이미지가
+                        imageList[0]에 저장되었을 것이다.
+                --%>
+                <c:if test="${board.imageList[0].imageOrder == 0}">
+                    <h5>썸네일</h5>
+                    <div class="img-box">
+                        <div class="boardImg thumbnail">
+                            <img src="${board.imageList[0].imagePath}${board.imageList[0].imageReName}">
+                            <a href="${board.imageList[0].imagePath}${board.imageList[0].imageReName}"
+                            download="${board.imageList[0].imageOriginal}">다운로드</a>
+                        </div>
+                    </div>
+                </c:if>
 
-            <!-- 썸네일 영역(썸네일이 있을 경우) -->
-            <h5>썸네일</h5>
-            <div class="img-box">
-                <div class="boardImg thumbnail">
-                    <img src="https://via.placeholder.com/270x270">
-                    <a href="#"">다운로드</a>         
-                </div>
-            </div>
+                <%-- 썸네일을 제외한 나머지 이미지의 시작번호 --%>
+                <%-- 썸네일이 있을 경우 --%>
+                <c:if test="${board.imageList[0].imageOrder == 0}">
+                    <c:set var="start" value="1"/>
+                </c:if>
+                <%-- 썸네일이 없을 경우 --%>
+                    <c:if test="${board.imageList[0].imageOrder != 0}">
+                    <c:set var="start" value="0"/>
+                </c:if>
+
+                <%-- ${fn:length(board.imageList) : imageList의 길이 --%>
+                <%-- 일반 이미지가 있을 경우 --%>
+                <c:if test="${fn:length(board.imageList) > start}" >
+                    <!-- 업로드 이미지 영역 -->
+                    <h5>업로드 이미지</h5>
+                    <c:forEach items="${board.imageList}" var="image" begin="${start}">
+                        <div class="img-box">
+                            <div class="boardImg">
+                                <c:set var="path" value="${image.imagePath}${image.imageReName}"/>
+                                <img src="${path}">
+                                <a href="${path}" download="${image.imageOriginal}">다운로드</a>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </c:if>
+            </c:if>
 
 
-            <!-- 업로드 이미지가 있는 경우 -->
 
-            <!-- 업로드 이미지 영역 -->
-            <h5>업로드 이미지</h5>
-            <div class="img-box">
-                
-                <div class="boardImg">
-                    <img src="https://via.placeholder.com/215x215">
-                    <a href="#">다운로드</a>                
-                </div>
-
-                <div class="boardImg">
-                    <img src="https://via.placeholder.com/215x215">
-                    <a href="#">다운로드</a>                
-                </div>
-
-                <div class="boardImg">
-                    <img src="https://via.placeholder.com/215x215">
-                    <a href="#">다운로드</a>                
-                </div>
-                
-                <div class="boardImg">
-                    <img src="https://via.placeholder.com/215x215">
-                    <a href="#">다운로드</a>                
-                </div>
-
-            </div>
 
 
             <!-- 내용 -->
-            <div class="board-content">내용입니다
-white-space: pre-wrap;
-줄바꿈
-띄    어   쓰   기
-유지
-됩니다
-하하하
-</div>
-
-
+            <div class="board-content">${board.boardContent}</div>
             <!-- 버튼 영역-->
             <div class="board-btn-area">
 
                 <!-- 로그인한 회원과 게시글 작성자 번호가 같은 경우-->
-                <button id="updateBtn">수정</button>
-                <button id="deleteBtn">삭제</button>
-
+                <c:if test="${loginMember.memberNo == board.memberNo}">
+                    <button id="updateBtn">수정</button>
+                    <button id="deleteBtn">삭제</button>
+                </c:if>
 
                 <button id="goToListBtn">목록으로</button>
             </div>
-
-
+            <!-- 댓글 include-->
+            <jsp:include page="comment.jsp"/>
         </section>
 
-        <!-- 댓글 include-->
-        <jsp:include page="comment.jsp"/>
     </main>
-
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 
 
+
+
+    <%--
+            누가 (로그인한 회원)
+            어떤 게시글(현재 게시글 번호) 좋아요를 클릭/취소
+
+    로그인한 회원 번호 얻어오기
+    1) ajax로 session에 있는 loginMember의 memberNo를 반환
+    2) HTML 요소에 로그인한 회원의 번호를 숨겨놓고 JS로 얻어오기
+    3) jsp 파일 제일 위에 있는 script 태그에 JS + EL 이용해서
+        전역 변수로 선언
+
+    --%>
+
+    <script>
+        // JSP에서 작성 가능한 언어/라이브러리
+        // -> html, css, js, java, EL, JSTL
+
+        // JSP 해석 우선 순위
+        // -> Java / EL / JSTL > HTML , CSS, JS
+
+        // 게시글 번호 전역 변수로 선언
+        const boardNo = ${board.boardNo};
+
+        // 로그인 한 회원 번호를 전역 변수로 선언
+        // ->   작성한 EL 구문이 null일 경우 빈칸으로 출력되어
+        //      작성한 값이 대입되지 않는 문제가 발생할 수 있음!
+        // 해결 방법 : EL 구문을 '', "" 문자열로 감싸면 해결
+        //      -> EL 값이 null이어도 ""(빈 문자열)로 출력
+
+        const loginMemberNo = '${loginMember.memberNo}';
+
+        console.log(boardNo);
+        console.log(loginMemberNo);
+
+    </script>
+    <script src="\resources\js\board\boardDetail.js"></script>
+    
+    <%-- <script src="/resources/js/board/boardDetail.js"></script> --%>
 </body>
 </html>
