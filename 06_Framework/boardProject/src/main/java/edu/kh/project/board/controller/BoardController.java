@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -88,17 +89,23 @@ public class BoardController {
 			// required true인데 cp 없으면 400에러
 			// defaultValue있으면 항상 있기때문에 required true든 false든 무의미
 			@RequestParam(value="cp", required=true, defaultValue="1")int cp,
-			Model model // 데이터 전달용 객체
+			Model model, // 데이터 전달용 객체
+			@RequestParam Map<String, Object> paramMap // 파라미터 전부 다 담겨있음.
 			) {
 		// boardCode 확인
-		System.out.println("boardCode : "+boardCode);
+		// System.out.println("boardCode : "+boardCode);
 		
-		// 게시글 목록 조회 서비스 호출
-		Map<String,Object> map = service.selectBoardList(boardCode, cp);
+		if(paramMap.get("key") == null) {
+			// 게시글 목록 조회 서비스 호출
+			Map<String,Object> map = service.selectBoardList(boardCode, cp);
+			model.addAttribute("map",map);
+			System.out.println(map);
+		} else { // 검색어가 있을 때(검색 O)
+			paramMap.put("boardCode", boardCode);
+			Map<String, Object> map = service.selectBoardList(paramMap, cp);
+			model.addAttribute("map",map);
+		}
 		
-		model.addAttribute("map",map);
-		
-		System.out.println(map);
 		
 		return "board/boardList";
 	}
@@ -249,4 +256,11 @@ public class BoardController {
 	public int like(@RequestBody Map<String, Integer> paramMap) {
 		return service.like(paramMap);
 	}
+	
+	 // 헤더 검색
+    @GetMapping(value="/headerSearch", produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public List<Map<String, Object>> headerSearch(String query){
+    	return service.headerSearch(query);
+    }
 }

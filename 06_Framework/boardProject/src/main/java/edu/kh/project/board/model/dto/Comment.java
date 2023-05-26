@@ -11,6 +11,7 @@ import lombok.ToString;
 @ToString
 public class Comment {
 	private int commentNo;
+	private int level;
     private String commentContent;
     private String commentCreateDate;
     private int boardNo;

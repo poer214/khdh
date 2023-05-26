@@ -176,15 +176,12 @@
         //      작성한 값이 대입되지 않는 문제가 발생할 수 있음!
         // 해결 방법 : EL 구문을 '', "" 문자열로 감싸면 해결
         //      -> EL 값이 null이어도 ""(빈 문자열)로 출력
-
         const loginMemberNo = '${loginMember.memberNo}';
-
         console.log(boardNo);
         console.log(loginMemberNo);
-
     </script>
-    <script src="\resources\js\board\boardDetail.js"></script>
     
-    <%-- <script src="/resources/js/board/boardDetail.js"></script> --%>
+    <script src="/resources/js/board/boardDetail.js"></script>
+    <script src="/resources/js/board/comment.js"></script>
 </body>
 </html>

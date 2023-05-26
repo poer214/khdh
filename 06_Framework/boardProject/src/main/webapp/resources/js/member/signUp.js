@@ -193,7 +193,7 @@ memberPw.addEventListener("input", () => {
                 pwMessage.classList.add("error");
                 pwMessage.classList.remove("confirm");
                 checkObj.memberPwConfirm = false;
-            } 
+            }
         }
     } else { // 유효하지 않은 경우
         pwMessage.innerText = "비밀번호 형식이 유효하지 않습니다.";

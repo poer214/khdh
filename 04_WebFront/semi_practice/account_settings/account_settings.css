@@ -1,5 +1,4 @@
-*{
-    /* border: 1px solid black; */
+main *{
     box-sizing: border-box;
 }
 
@@ -17,10 +16,6 @@
     display: flex;
     align-items: center;
     
-}
-
-.row{
-    /* margin: 0px -10px; */
 }
 
 .bold{
@@ -77,12 +72,12 @@
     margin: 20px 0px;
 }
 
-.menuContainer{
+.menu-container{
     width: 100%;
 }
 
 
-.menuContainer > a {
+.menu-container > a {
     text-decoration: none;
     color: black;
     padding: 20px 5px;
@@ -90,7 +85,7 @@
     flex-direction: row;
     justify-content: space-between;
 }
-.menuContainer > a:hover {
+.menu-container > a:hover {
     color: #2DB400;
 }
 
@@ -110,7 +105,3 @@ hr{
 .between{
     justify-content: space-between;
 }
-
-/* main{
-    margin-bottom: 250px;
-} */

@@ -36,8 +36,6 @@ public class BoardServiceImpl2 implements BoardService2 {
 		// 1. BOARD 테이블 INSERT 하기 (제목, 내용, 작성자, 게시판 코드)
 		//  -> boardNo (시퀀스로 생성한 번호) 반환 받기
 		int boardNo = dao.boardInsert(board);
-		System.out.println(boardNo);
-		System.out.println(board.getBoardNo());
 		
 		// 2. 게시글 삽입 성공 시
 		//  업로드 된 이미지가 있다면 BOARD_IMG 테이블에 삽입하는 DAO 호출
@@ -120,8 +118,6 @@ public class BoardServiceImpl2 implements BoardService2 {
 	@Override
 	public int boardUpdate(Board board, List<MultipartFile> images, String webPath, String filePath, String deleteList)
 			throws IllegalStateException, IOException {
-		
-
 				
 		// 1. 게시글 제목/내용만 수정
 		// 1) XSS 방지 처리

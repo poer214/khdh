@@ -184,6 +184,7 @@ public class MyPageController {
 		
 		// 실제로 이미지 파일이 저장 되어야하는 서버 컴퓨터 경로
 		String filePath = session.getServletContext().getRealPath(webPath);
+		System.out.println(filePath);
 		
 		// 프로필 이미지 수정 서비스 호출
 		int result = service.updateProfile(profileImage, webPath, filePath, loginMember);

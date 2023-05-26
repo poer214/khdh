@@ -91,4 +91,40 @@ public class BoardDAO {
 	public int updateReadCount(int boardNo) {
 		return sqlSession.update("boardMapper.updateReadCount",boardNo); 
 	}
+
+	
+	/** 게시글 수 조회(검색
+	 * @param paramMap
+	 * @return listCount
+	 */
+	public int getListCount(Map<String, Object> paramMap) {
+		return sqlSession.selectOne("boardMapper.getSearchListCount",paramMap);
+	}
+
+	
+	/** 게시글 목록 조회(검색)
+	 * @param pagination
+	 * @param paramMap
+	 * @return boardList
+	 */
+	public List<Board> selectBoardList(Pagination pagination, Map<String, Object> paramMap) {
+		RowBounds rowBounds = new RowBounds(pagination.getOffset(), pagination.getLimit());
+		return sqlSession.selectList("boardMapper.selectSearchList",paramMap, rowBounds);
+	}
+	
+	/** 헤더 검색
+	 * @param query
+	 * @return list
+	 */
+	public List<Map<String, Object>> headerSearch(String query) {
+		return sqlSession.selectList("boardMapper.headerSearch", query);
+	}
+
+	
+	/** DB (이미지) 파일 목록 조회
+	 * @return list
+	 */
+	public List<String> selectImageList() {
+		return sqlSession.selectList("boardMapper.selectImageListAll");
+	}
 }
