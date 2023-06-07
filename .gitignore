@@ -30,3 +30,6 @@ MANIFEST.MF
 
 .factorypath
 settings.json
+
+# SpringBoot 설정파일
+config.properties
