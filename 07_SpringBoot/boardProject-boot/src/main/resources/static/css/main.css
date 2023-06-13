@@ -1,0 +1,18 @@
+body{
+  margin: 0;
+}
+header>*{
+  box-sizing: border-box;
+  border: 1px solid black;
+}
+
+header{
+  height: 80px;
+  display: flex;
+  justify-content: center;
+}
+
+#headerArea{
+  height: 100%;
+  width: 1280px;
+}

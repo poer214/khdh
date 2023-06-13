@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판 프로젝트</title>
+    <!-- font awesome 라이브러리 추가 -->
+</head>
+<body>
+    <main>
+    <!-- header.jsp 추가(포함) -->
+    <!--
+        <jsp:include page="jsp파일경로" />
+
+        - JSP 액션 태그 (jsp에 기본 내장된 태그)
+        - 다른 jsp 파일의 코드를 현재 위치에 추가(포함)
+        - jsp 파일 경로는 webapp 폴더를 기준으로 작성
+    -->
+    <!-- <jsp:include page="/WEB-INF/views/common/header.jsp" /> -->
+    <!--
+        th:block
+        - html 태그가 아닌 단순히 타임리프를 쓰기 위한 태그가 필요할 때 사용
+        - 타임리프 해석 시 다른 타임리프 수행 후 사라짐
+    -->
+    <th:block th:replace="~{common/header}"></th:block>
+    <section class="content">
+        <section class="content-1">
+            <h3>로그인된 회원 정보 </h3>
+            <th:block>[[${loginMember}]]</th:block>
+
+            <h3>닉네임이 일치하는 회원의 전화번호 조회</h3>
+            
+            <input type="text" id="inputNickname">
+            <button id="btn1">조회</button>
+            <h4 id="result1">전화번호 나오는 곳</h4>
+
+            <hr>
+
+            <h3>이메일을 입력 받아 일치하는 회원의 정보를 모두 조회</h3>
+            email : <input type="text" id="inputEmail">
+            <button id="btn2">조회</button>
+            <ul id="result2"></ul>
+
+            <hr>
+
+            <h3>이메일이 일부라도 일치하는 모든 회원 조회</h3>
+            검색어 : <input type="text" id="input">
+            <button id="btn3">조회</button>
+            <table border="1" style="border-collapse:collapse">
+                <thead>
+                    <tr>
+                        <th>회원 번호</th>
+                        <th>이메일</th>
+                        <th>닉네임</th>
+                    </tr>
+                </thead>
+                <tbody id="result3">
+                    <tr>
+                        <td>1</td>
+                        <td>샘플</td>
+                        <td>데이터</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+
+            <h3>삼항 연산자</h3>
+            <p th:text="${session.loginMember?.memberAddress ?: '주소없음'} ?: '비로그인'"></p>
+            <p th:text="${name} ? ${name} : '이름 없음' "></p>
+            <p th:text="${name2} ? ${name2} : '이름 없음' "></p>
+            
+            <h3>Elvis 연산자</h3>
+            <p th:text="${name}?:'이름 없음'"></p>
+            <p th:text="${name2}?:'이름 없음'"></p>
+            
+            <h3>No-Operation</h3>
+            <p th:text="${name}?:_">이름 없음</p>
+            <p th:text="${name2}?:_">이름 없음</p>
+            
+
+        </section>
+        <section class="content-2">
+
+            <!-- <c:choose> -->
+                <!-- choose 내부에는 c:when, c:otherwise, jsp주석만 작성 가능 -->
+                <!-- <c:when test="${empty sessionScope.loginMember}"> -->
+                    <!-- method="POST" : 제출 되는 값이 주소에 안보임 -->
+                <th:block th:unless="${session.loginMember}">
+                    <form th:action="@{/member/login}" method="POST" id="loginFrm">
+                        <fieldset class="id-pw-area">
+                            <section>
+                                <input type="text" name="memberEmail" placeholder="이메일" autocomplete="off"
+                                value="">
+                                <input type="password" name="memberPw" placeholder="비밀번호">
+                            </section>
+                            <section><button>로그인</button></section>
+                        </fieldset>
+                        <label>
+                            <input type="checkbox" name="saveId" ${save}/>아이디 저장
+                        </label>
+                
+                        <article class="signup-find-area">
+                            <a th:href="@{/member/signUp}">회원가입</a>
+                            <span>|</span>
+                            <a th:href="@{#}">ID/PW 찾기</a>
+                        </article>
+                    </form>
+                </th:block>
+            
+            <!-- 로그인 되었을 때 -->
+                <th:block th:if="${session.loginMember}">
+                    <article class="login-area">
+                        <a th:href="@{/myPage/profile}">
+                            <img th:src="${session.loginMember.profileImage}?:@{/images/user.png}" id="memberProfile">
+                        </a>
+                        <div class="my-info">
+                            <div>
+                                <a th:href="@{/myPage/info}" id="nickname">[[${session.loginMember.memberNickname}]]</a>
+                                <a th:href="@{/member/logout}" id="logoutBtn">로그아웃</a>
+                            </div>
+                            <p>[[${session.loginMember.memberEmail}]]</p>
+                        </div>
+                    </article>
+                </th:block>
+            </section>
+        </section>
+    </main>
+    <!-- <jsp:include page="/WEB-INF/views/common/footer.jsp" /> -->
+    <th:block th:replace="~{common/footer}"></th:block>
+
+    <!-- SockJS 추가 -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script> -->
+    
+    <!-- main.js 추가 -->
+    <script th:src="@{/js/main.js}"></script>
+</body>
+</html>

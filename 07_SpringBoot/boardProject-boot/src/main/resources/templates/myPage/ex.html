@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .selectable {
+            border: 1px solid black;
+            padding: 5px;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+
+        .selected {
+            border-color: red;
+        }
+        
+        .otherContainer {
+            display: none;
+        }
+
+        .other:checked ~ .otherContainer {
+            display: block;
+        }
+
+        #otherCheckbox{
+            display: none;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <form action="asd.html" >
+        <div class="selectable" data-value="하나">Option 1</div>
+        <div class="selectable" data-value="둘">Option 2</div>
+        <div class="selectable" data-value="셋">Option 3</div>
+        <input type="checkbox" class="other selectable" id="otherCheckbox">
+        <label for="otherCheckbox" class="selectable">other</label>
+        <div class="other selectable">other</div>
+        <div class="otherContainer">
+            <input type="text">
+        </div>
+        <input type="hidden" id="a" name="hidden">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+<script>
+    const selectableElems = document.querySelectorAll('.selectable');
+    const otherSelectable = document.querySelector('.other');
+    otherSelectable.addEventListener('click',e=>{
+        
+    })
+
+    selectableElems.forEach(elem => {
+        elem.addEventListener('click', () => {
+            if (elem.classList.contains('selected')) {
+                elem.classList.remove('selected');
+            } else {
+                elem.classList.add('selected');
+            }
+        });
+    });
+
+    const formElem = document.querySelector('form');
+    formElem.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const selectedElems = document.querySelectorAll('.selected');
+        const selectedValues = Array.from(selectedElems).map(elem => elem.dataset.value);
+        const a = document.querySelector('#a');
+        a.value = selectedValues;
+        console.log(a.value);
+        console.log(selectedValues);
+        console.log(a);
+        // formElem.submit();
+    });
+</script>
+
+</html>

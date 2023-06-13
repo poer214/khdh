@@ -1,0 +1,91 @@
+<!-- <link rel="stylesheet" href="/css/main-style.css"> -->
+<link rel="stylesheet" th:href="@{/css/main-style.css}">
+<!-- @{} 경로 작성시 사용하는 문법 -->
+<script th:src="@{https://kit.fontawesome.com/f7459b8054.js}" crossorigin="anonymous"></script>
+<!-- <script src="/resources/js/header.js"></script> -->
+<script th:src="@{/js/header.js}"></script>
+<header>
+    <section>
+        <!-- 클릭 시 메인 페이지로 이동하는 로고 -->
+        <a th:href="@{/}">
+            <img th:src="@{/images/logo.png}" alt="로고" id="homeLogo">
+        </a>
+    </section>
+    <section>
+        <!-- 검색어 입력할 수 있는 화면 -->
+        <article class="search-area">
+            <!--
+                action : 내부 input에 작성된 값을 제출할 경로/주소
+                method : 어떤 방식으로 제출할 지 지정
+
+                - GET : input 태그 값을 주소에 담아서 제출(주소에 보임)
+                - POST : input태그 값을 주소에 담지 않고 제출(주소에 안보임)
+                        -> HTTP Body에 담아서 제출
+            -->
+            <form th:action="@{/board/1}" method="GET">
+                <fieldset> <!-- form태그 내 영역 구분 -->
+                    <!--
+                        input의 name 속성 = 제출 시 key 값
+                        input에 입력된 내용 = 제출 시 value
+                    -->
+                    <input type="search" name="query" id="query" placeholder="검색어를 입력해주세요."
+                    autocomplete="off" th:value="${param.query}?:''">
+                    
+                    <!-- 제목 검색 -->
+                    <input type="hidden" name="key" value="t">
+                    <!-- 검색 버튼 -->
+                    <!-- button type="submit" 이 기본값 -->
+                    <button id="searchBtn" class="fa-solid fa-magnifying-glass"></button>
+                </fieldset>
+            </form>
+            <ul id="searchResult" class="close"></ul>
+        </article>
+    </section>
+
+    <section></section>
+
+    <!-- 우측 상단 드롭다운 메뉴 -->
+    <div class="header-top-menu">
+
+        <!-- <c:choose>
+            <c:when test="${empty loginMember}"> -->
+                <!-- 로그인 X -->
+            <th:block th:if="${session.loginMember == null}">
+                <a th:href="@{/}">메인 페이지</a> | <a th:href="@{/member/login}">로그인</a>
+            </th:block>
+            <!-- </c:when>
+            <c:otherwise> -->
+                <!-- 로그인 O -->
+            <th:block th:unless="${session.loginMember == null}">
+                <label for="headerMenuToggle">
+                    <th:block th:text="${session.loginMember.memberNickname}">유저닉네임 표시란</th:block>
+                    <!-- [[${session.loginMember.memberNickname}]] 이런 방법도 있다 -->
+                    <i class="fa-solid fa-caret-down"></i>
+                </label>
+            </th:block>
+
+                <input type="checkbox" id="headerMenuToggle">
+                <div class="header-menu">
+                    <a th:href="@{/myPage/info}">내 정보</a>
+                    <a th:href="@{/member/logout}">로그아웃</a>
+                </div>
+            <!-- </c:otherwise>
+        </c:choose> -->
+    </div>
+
+
+
+</header>
+<nav>
+    <ul>
+        <!-- <c:forEach items="${applicationScope.boardTypeList}" var="boardType"> -->
+            <li th:each="boardType:${application.boardTypeList}">
+                <!-- 정석 -->
+                <a th:href="@{/board/{boardCode}(boardCode=${boardType.BOARD_CODE})}" th:text="${boardType.BOARD_NAME}"></a>
+                <!-- 이런 방법도 있다 -->
+                <!-- <a th:href="|/board/${boardType.BOARD_CODE}|" th:text="${boardType.BOARD_NAME}"></a> -->
+            </li>
+        <!-- </c:forEach> -->
+
+    </ul>
+</nav>

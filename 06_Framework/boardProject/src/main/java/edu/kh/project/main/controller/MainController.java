@@ -33,6 +33,7 @@ public class MainController {
 		// prefix, suffix 부분을 제외하고 작성!!!
 		// -> prefix + 리턴 값 + suffix로 경로 완성!
 		
+//		return "common/main";
 		return "common/main";
 	}
 }
