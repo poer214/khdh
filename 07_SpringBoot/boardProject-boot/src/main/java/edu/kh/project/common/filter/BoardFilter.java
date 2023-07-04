@@ -18,7 +18,7 @@ public class BoardFilter implements Filter {
 
 		HttpServletRequest req = (HttpServletRequest) request;
 
-		System.out.println(req.getRequestURI());
+		System.out.println("zzzzzz"+req.getRequestURI());
 
 		String[] arr = req.getRequestURI().split("/");
 

@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.project.board.model.dto.Board;
+import edu.kh.project.board.model.dto.BoardImage;
 import edu.kh.project.board.model.service.BoardService;
 import edu.kh.project.member.model.dto.Member;
 import jakarta.servlet.http.Cookie;
@@ -84,12 +85,12 @@ public class BoardController {
 	// 게시글 목록 조회
 	@GetMapping("/{boardCode:[0-9]+}") // boardCode는 1자리 이상 숫자
 	public String selectBoardList(
-			@PathVariable("boardCode")int boardCode,
-			// required true인데 cp 없으면 400에러
-			// defaultValue있으면 항상 있기때문에 required true든 false든 무의미
-			@RequestParam(value="cp", required=true, defaultValue="1")int cp,
-			Model model, // 데이터 전달용 객체
-			@RequestParam Map<String, Object> paramMap // 파라미터 전부 다 담겨있음.
+				@PathVariable("boardCode")int boardCode,
+				// required true인데 cp 없으면 400에러
+				// defaultValue있으면 항상 있기때문에 required true든 false든 무의미
+				@RequestParam(value="cp", required=true, defaultValue="1")int cp,
+				Model model, // 데이터 전달용 객체
+				@RequestParam Map<String, Object> paramMap // 파라미터 전부 다 담겨있음.
 			) {
 		// boardCode 확인
 		// System.out.println("boardCode : "+boardCode);
@@ -241,6 +242,21 @@ public class BoardController {
 			
 			path = "board/boardDetail"; // forward할 jsp 경로
 			model.addAttribute("board",board);
+			
+			
+			// 게시글에 이미지가 있을 경우
+			if(!board.getImageList().isEmpty()) {
+				BoardImage thumbnail = null;
+				
+				// 0번 인덱스 이미지의 순서가 0인 경우 == 썸네일
+				if(board.getImageList().get(0).getImageOrder() == 0) {
+					thumbnail = board.getImageList().get(0);
+				}
+				model.addAttribute("thumbnail",thumbnail);
+				model.addAttribute("start", thumbnail != null ? 1 : 0);
+			}
+			
+			
 		} else { // 조회 결과가 없을 경우
 			path = "redirect:/board/" + boardCode;
 			// 게시판 첫 페이지로 리다이렉트

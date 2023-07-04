@@ -65,8 +65,12 @@ img{
 
 }
 /* x축 회전 */
+.trans-rotate-x-3d{
+    transition-duration:0.5s;
+}
 .trans-rotate-x-3d:hover{
     transform: perspective(300px) rotateX(45deg);
+    transition-duration:0.5s;
 }
 /* y축 회전 */
 .trans-rotate-y-3d:hover{
@@ -96,14 +100,14 @@ img{
     background-color: yellow;
 }
 .test2:hover{
-    transform: rotate3d(5,5,5,72000deg);
+    transform: rotate3d(5,5,5,720deg);
     background-color: skyblue;
     border-radius: 50%;
 }
 
 /* https://www.w3schools.com/cssref/css3_pr_transition-timing-function.php */
 .test3{
-    transition-duration: 5s;
+    transition-duration: 1s;
     transition-timing-function: cubic-bezier(0.3,0.3,1,0.5);
     
 }
@@ -114,11 +118,11 @@ img{
 
 /* 변형 딜레이(transition-delay) */
 .test4{
-    transition-delay: 2s;
-    border-radius: 50%;
+    /* transition-delay: 2s; */
+    /* border-radius: 50%; */
 }
 .test4:hover{
-    transform: translateX(150px) rotate(180deg);
+    transform: translateX(152px) rotate(180deg);
 }
 
 .car:hover img{
